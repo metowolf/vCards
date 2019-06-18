@@ -19,12 +19,12 @@ vCards CN
 
 ## 图标设计
 
- - 采用 PNG 编码
- - 画布大小 200w200h
- - logo 设置 140w，居中放置
+ - 采用 `PNG` 编码
+ - 画布大小 `200w200h`
+ - logo 设置 `max(w, h) = 140`，居中放置
    - logo 为纯色时，画布采用主体色，logo 填充为白色
    - logo 不为纯色时，画布采用纯白
    - 特殊情况特殊处理
- - 图像大小压缩在 20 kB 内
+ - 图像大小压缩在 `20 kB` 内
 
-![Design](https://user-images.githubusercontent.com/2666735/59697382-4c67f180-9220-11e9-8482-50816f0ebdac.png)
+![Design](https://user-images.githubusercontent.com/2666735/59700723-876d2380-9226-11e9-8e40-381aa630168a.png)
