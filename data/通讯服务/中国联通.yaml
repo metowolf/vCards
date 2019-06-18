@@ -1,0 +1,7 @@
+basic:
+  organization: 中国联通
+  cellPhone:
+    - 10010 # 客服热线
+    - 10011
+    - 10016 # 客户回访
+  url: http://www.10010.com/

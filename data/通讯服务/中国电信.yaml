@@ -1,0 +1,6 @@
+basic:
+  organization: 中国电信
+  cellPhone:
+    - 10000 # 客服热线
+    - 10001 # 自助服务
+  url: https://www.189.cn/

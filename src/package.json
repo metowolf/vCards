@@ -1,0 +1,18 @@
+{
+  "name": "vCards",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:metowolf/vCards.git",
+  "author": "metowolf <i@i-meto.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "chalk": "^2.4.2",
+    "is-png": "^2.0.0",
+    "pretty-bytes": "^5.2.0",
+    "read-chunk": "^3.2.0",
+    "glob": "^7.1.4",
+    "js-yaml": "^3.13.1",
+    "vcards-js": "^2.10.0"
+  }
+}
