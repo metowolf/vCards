@@ -7,7 +7,7 @@ const prettyBytes = require('pretty-bytes')
 
 const check = (type, name) => {
 
-  const pathname = `../data/${type}/${name}`
+  const pathname = `data/${type}/${name}`
 
   if (!fs.existsSync(`${pathname}.png`)) {
     return chalk.red('(缺少对应 PNG 图像)')
@@ -30,12 +30,12 @@ const check = (type, name) => {
   return true
 }
 
-let files = glob('../data/*/*.yaml')
+let files = glob('data/*/*.yaml')
 console.log(`\n当前目录下发现 ${chalk.green(files.length)} 个联系人信息\n`)
 
 for (let [index, file] of files.entries()) {
-  const type = file.split('/')[2]
-  const name = file.split('/')[3].split('.')[0]
+  const type = file.split('/')[1]
+  const name = file.split('/')[2].split('.')[0]
   const result = check(type, name)
   if (result !== true) {
     console.log(` ${index + 1}\t${type}-${name} ${result}`)

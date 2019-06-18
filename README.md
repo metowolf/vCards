@@ -9,7 +9,7 @@ vCards CN
 ## 参与维护
 
  1. 在 `/data/类别/` 里添加 `yaml` 与 `png` 文件
- 2. 在 `src` 目录下执行 `yarn test` 检查格式规范
+ 2. 在根目录下执行 `yarn test` 检查格式规范
  3. 提交 `pull requests`，等待合并
 
 ## 使用方法

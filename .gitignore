@@ -1,3 +1,4 @@
 node_modules
 vcf
+*.zip
 .DS_Store
