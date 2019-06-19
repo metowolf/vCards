@@ -4,6 +4,7 @@ const glob = require("glob").sync
 const readChunk = require('read-chunk')
 const isPng = require('is-png')
 const prettyBytes = require('pretty-bytes')
+const yaml = require('js-yaml')
 
 const check = (type, name) => {
 
@@ -25,6 +26,15 @@ const check = (type, name) => {
 
   if (lstat.size > 1024 * 20) {
     return `${chalk.red(`(PNG 图像超出大小限制 ${prettyBytes(lstat.size)} > 20 kB)`)}`
+  }
+
+  const data = fs.readFileSync(`${pathname}.yaml`, 'utf8')
+  const json = yaml.load(data)
+
+  for (let phone of json.basic.cellPhone) {
+    if (phone.toString().substr(0, 3) === '106') {
+      return chalk.red('(存在 106 短信通道号码)')
+    }
   }
 
   return true
