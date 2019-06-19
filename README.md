@@ -5,6 +5,16 @@ vCards CN
 
 ![Screenshot](https://user-images.githubusercontent.com/2666735/59692672-0b6bdf00-9218-11e9-881e-5856e263f3aa.png)
 
+## 使用方法
+
+ 1. 到 https://github.com/metowolf/vCards/releases 下载最新的打包文件
+ 2. 解压后，双击选定的 `vcf` 文件执行导入
+
+## 请求收录
+
+ 1. 打开 https://github.com/metowolf/vCards/issues/new 页面
+ 2. 填写相关信息
+ 3. 提交 `issue`，等待处理
 
 ## 参与维护
 
@@ -12,10 +22,14 @@ vCards CN
  2. 在根目录下执行 `yarn test` 检查格式规范
  3. 提交 `pull requests`，等待合并
 
-## 使用方法
+## 号码收录
 
- 1. 到 https://github.com/metowolf/vCards/releases 下载最新的打包文件
- 2. 解压后，双击选定的 `vcf` 文件执行导入
+ - 不收录个人号码
+ - 企业官网标注优先收录
+ - 106 短信号段收录需要满足以下规则
+   - 在个人设备上收到 2 次及以上讯息
+   - 在 [114 百事通](http://www.114best.com/) 收录，且非首次查询
+   - 在 [百度手机卫士](https://haoma.baidu.com/yellowPage) 收录
 
 ## 图标设计
 
