@@ -2,7 +2,7 @@
   "name": "vCards",
   "version": "1.0.0",
   "scripts": {
-    "build": "node build.js && zip -r vcf.zip vcf/* && rm -r vcf",
+    "build": "node build.js && cd vcf && zip -r vcf.zip * && mv vcf.zip ../ALL.zip && cd .. && rm -r vcf",
     "test": "node test.js"
   },
   "repository": "git@github.com:metowolf/vCards.git",
