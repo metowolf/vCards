@@ -10,8 +10,8 @@ before_deploy:
   - git tag $TRAVIS_TAG
 deploy:
   provider: releases
-  api_key: $GITHUB_OAUTH_TOKEN
-  file: ALL.zip
-  tag_name: $TRAVIS_TAG
   skip_cleanup: true
-  draft: true
+  api_key: $GITHUB_OAUTH_TOKEN
+  file: vcards.all.zip
+  tag_name: $TRAVIS_TAG
+  name: $TRAVIS_TAG
