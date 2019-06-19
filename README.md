@@ -12,8 +12,8 @@ vCards CN
 
 ## 请求收录
 
- 1. 打开 https://github.com/metowolf/vCards/issues/new 页面
- 2. 填写相关信息
+ 1. 打开 https://github.com/metowolf/vCards/issues/new/choose 页面，选择「vCard 新增请求」
+ 2. 完整填写相关信息
  3. 提交 `issue`，等待处理
 
 ## 参与维护
@@ -24,12 +24,7 @@ vCards CN
 
 ## 号码收录
 
-106 短信号段如满足以下规则可被收录
- - 固定短号，如金融银行等
- - 在 [114 百事通](http://www.114best.com/) 收录，且非首次查询
- - 在 [百度手机卫士](https://haoma.baidu.com/yellowPage) 收录，且在个人设备上收到 2 次及以上讯息
-
-由于不同地区不同运营商的 106 短信号段存在差异，项目不作过多收录，建议将本项目作为一个基础模板，导入联系人后可以按以下方式自行补充其余号码
+由于不同地区不同运营商的 106 短信推送号段存在差异，项目不作收录，建议将本项目作为一个基础模板，导入联系人后可以按以下方式自行补充其余号码
 
 ![Screenshot](https://user-images.githubusercontent.com/2666735/59747105-ccd33480-92aa-11e9-90e0-93f295dcb504.png)
 
@@ -45,3 +40,9 @@ vCards CN
  - 图像大小压缩在 `20 kB` 内
 
 ![Design](https://user-images.githubusercontent.com/2666735/59700723-876d2380-9226-11e9-8e40-381aa630168a.png)
+
+## 致谢
+
+ - [114 百事通](http://www.114best.com/)提供查询接口
+ - [百度手机卫士](https://haoma.baidu.com/yellowPage)提供查询接口
+ - [中国可信号码数据中心](https://www.kexinhaoma.org/)提供查询接口

@@ -2,3 +2,4 @@ basic:
   organization: 中国银联
   cellPhone:
     - 95516
+  url: https://cn.unionpay.com/
