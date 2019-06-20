@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const glob = require("glob").sync
 const readChunk = require('read-chunk')
 const isPng = require('is-png')
+const imageSize = require('image-size')
 const prettyBytes = require('pretty-bytes')
 const yaml = require('js-yaml')
 
@@ -26,6 +27,11 @@ const check = (type, name) => {
 
   if (lstat.size > 1024 * 20) {
     return `${chalk.red(`(PNG 图像超出大小限制 ${prettyBytes(lstat.size)} > 20 kB)`)}`
+  }
+
+  dimensions = imageSize(`${pathname}.png`)
+  if (dimensions.width !== 200 || dimensions.height !== 200) {
+    return `${chalk.red(`(PNG 图像尺寸不符合规范 ${dimensions.width}w${dimensions.height}h)`)}`
   }
 
   const data = fs.readFileSync(`${pathname}.yaml`, 'utf8')
