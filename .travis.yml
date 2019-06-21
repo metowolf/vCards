@@ -12,6 +12,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key: $GITHUB_OAUTH_TOKEN
-  file: vcards.all.zip
+  file_glob: true
+  file: public/*
   tag_name: $TRAVIS_TAG
   name: $TRAVIS_TAG

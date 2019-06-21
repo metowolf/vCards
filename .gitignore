@@ -1,4 +1,5 @@
 node_modules
-vcf
+temp
+public
 *.zip
 .DS_Store

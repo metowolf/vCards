@@ -2,16 +2,22 @@
   "name": "vCards",
   "version": "1.0.0",
   "scripts": {
-    "build": "node build.js && cd vcf && zip -r vcf.zip * && mv vcf.zip ../vcards.all.zip && cd .. && rm -r vcf",
-    "test": "node test.js"
+    "build": "npm run gulp build",
+    "gulp": "gulp --gulpfile src/gulpfile.js --cwd ./",
+    "test": "npm run gulp test"
   },
   "repository": "git@github.com:metowolf/vCards.git",
   "author": "metowolf <i@i-meto.com>",
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "chalk": "^2.4.2",
-    "glob": "^7.1.4",
+    "ava": "^2.1.0",
+    "globby": "^9.2.0",
+    "gulp": "^4.0.2",
+    "gulp-ava": "^1.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-zip": "^5.0.0",
     "image-size": "^0.7.4",
     "is-png": "^2.0.0",
     "js-yaml": "^3.13.1",
