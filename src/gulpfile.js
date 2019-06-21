@@ -18,8 +18,8 @@ gulp.task('generator', () => {
 })
 
 gulp.task('archive', () => {
-  return gulp.src('temp/*/*.vcf')
-    .pipe(zip('archive.all.zip'))
+  return gulp.src(['temp/*/*.vcf', 'temp/*.all.vcf'])
+    .pipe(zip('archive.zip'))
     .pipe(gulp.dest('./public'))
 })
 
@@ -28,10 +28,13 @@ gulp.task('concat', async () => {
   const types = paths.map(x => x.split('/')[1])
   const promises = types.map(type => {
     return gulp.src(`temp/${type}/*.vcf`)
-      .pipe(concat(`${type}.vcf`))
-      .pipe(gulp.dest('./public'))
+      .pipe(concat(`${type}.all.vcf`))
+      .pipe(gulp.dest('./temp'))
   })
-  return Promise.all(promises)
+  await Promise.all(promises)
+  return gulp.src('temp/*.all.vcf')
+    .pipe(concat(`all.vcf`))
+    .pipe(gulp.dest('./public'))
 })
 
 gulp.task('test', () => {
@@ -39,4 +42,4 @@ gulp.task('test', () => {
     .pipe(ava({verbose: true}))
 })
 
-gulp.task('build', gulp.series('test', 'generator', gulp.parallel('archive', 'concat')))
+gulp.task('build', gulp.series('test', 'generator', 'concat', 'archive'))
