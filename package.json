@@ -11,9 +11,9 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "ava": "^2.1.0",
-    "del": "^4.1.1",
-    "globby": "^9.2.0",
+    "ava": "^2.2.0",
+    "del": "^5.0.0",
+    "globby": "^10.0.1",
     "gulp": "^4.0.2",
     "gulp-ava": "^1.0.0",
     "gulp-concat": "^2.6.1",
