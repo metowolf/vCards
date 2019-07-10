@@ -5,10 +5,20 @@ vCards CN
 
 ![Screenshot](https://user-images.githubusercontent.com/2666735/59692672-0b6bdf00-9218-11e9-881e-5856e263f3aa.png)
 
-## 使用方法
+## 使用指南
 
- 1. 到 https://github.com/metowolf/vCards/releases 下载最新的打包文件
- 2. 解压后，双击选定的 `vcf` 文件执行导入
+ 1. 到 https://github.com/metowolf/vCards/releases 下载最新的打包文件 `archive.zip`；
+ 2. 解压后，根据不同平台的指南导入 `vcf` 文件至 iCloud 中，推荐单独创建「黄页」分组方便管理和隐藏。
+
+### macOS
+ - [在 Mac 上的“通讯录”中创建联系人群组](https://support.apple.com/zh-cn/guide/contacts/adrb3280fe91/12.0/mac/10.14)
+ - [在 Mac 上的“通讯录”中导入来自其他应用的联系人](https://support.apple.com/zh-cn/guide/contacts/adrbk1457/mac)
+
+### iOS/web
+ - [在 iCloud 通讯录中创建群组](https://support.apple.com/kb/PH2667?locale=zh_CN)
+ - [将联系人导入 iCloud 通讯录](https://support.apple.com/kb/ph3605?locale=zh_CN)
+
+----
 
 ## 请求收录
 
@@ -41,7 +51,7 @@ vCards CN
    - 特殊情况特殊处理
  - 图像大小压缩在 `20 kB` 内
 
-![Design](https://user-images.githubusercontent.com/2666735/59700723-876d2380-9226-11e9-8e40-381aa630168a.png)
+![Design](https://user-images.githubusercontent.com/2666735/60966995-224fae00-a34c-11e9-970c-ea5fa15186c6.png)
 
 ## 致谢
 
