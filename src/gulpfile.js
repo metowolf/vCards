@@ -27,9 +27,15 @@ const archive = () => {
 
 const combine = () => {
   return src('temp/*/*.vcf')
-    .pipe(concatFolders('temp'))
+    .pipe(concatFolders('汇总'))
     .pipe(rename({ extname: '.all.vcf' }))
-    .pipe(dest('./'))
+    .pipe(dest('./temp'))
+}
+
+const allinone = () => {
+  return src('temp/汇总/*.all.vcf')
+    .pipe(concat('全部.vcf'))
+    .pipe(dest('./temp/汇总'))
 }
 
 const test = () => {
@@ -47,5 +53,6 @@ const clean = () => {
 exports.test = test
 exports.generator = generator
 exports.combine = combine
+exports.allinone = allinone
 exports.archive = archive
-exports.build = series(test, clean, generator, combine, archive)
+exports.build = series(test, clean, generator, combine, allinone, archive)
