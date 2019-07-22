@@ -7,14 +7,23 @@ vCards CN
 
 ## 使用指南
 
+### 自动导入
+
+在 App Store 下载"黄页小电话 iOS 版本" [https://apps.apple.com/cn/app/id1472985737](https://apps.apple.com/cn/app/id1472985737) 或 在酷安下载 Android 版本 [https://www.coolapk.com/apk/238353](https://www.coolapk.com/apk/238353)
+点击"一键导入"即可，可以定期点击导入来更新数据，软件会自动清除历史数据. 
+
+![](https://user-images.githubusercontent.com/12148377/61539512-4444e100-aa6e-11e9-8a0d-0fa52cecb23c.png)
+
  1. 到 https://github.com/metowolf/vCards/releases 下载最新的打包文件 `archive.zip`；
  2. 解压后，根据不同平台的指南导入 `vcf` 文件至 iCloud 中，推荐单独创建「黄页」分组方便管理和隐藏。
 
-### macOS
+### 手动导入
+
+#### macOS
  - [在 Mac 上的“通讯录”中创建联系人群组](https://support.apple.com/zh-cn/guide/contacts/adrb3280fe91/12.0/mac/10.14)
  - [在 Mac 上的“通讯录”中导入来自其他应用的联系人](https://support.apple.com/zh-cn/guide/contacts/adrbk1457/mac)
 
-### iOS/web
+#### iOS/web
  - [在 iCloud 通讯录中创建群组](https://support.apple.com/kb/PH2667?locale=zh_CN)
  - [将联系人导入 iCloud 通讯录](https://support.apple.com/kb/ph3605?locale=zh_CN)
 
