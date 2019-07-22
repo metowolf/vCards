@@ -9,7 +9,7 @@ vCards CN
 
 ### 自动导入
 
-在 App Store 下载"小黄页" [https://apps.apple.com/cn/app/id1472985737](https://apps.apple.com/cn/app/id1472985737)
+在 App Store 下载"黄页小电话 iOS 版本" [https://apps.apple.com/cn/app/id1472985737](https://apps.apple.com/cn/app/id1472985737) 或 在酷安下载 Android 版本 [https://www.coolapk.com/apk/238353](https://www.coolapk.com/apk/238353)
 点击"一键导入"即可，可以定期点击导入来更新数据，软件会自动清除历史数据. 
 
 ![](https://user-images.githubusercontent.com/12148377/61539512-4444e100-aa6e-11e9-8a0d-0fa52cecb23c.png)
