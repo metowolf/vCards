@@ -1,11 +1,11 @@
 import fs from 'fs'
 import test from 'ava'
 import globby from 'globby'
-import isPng from 'is-png'
 import yaml from 'js-yaml'
 import readChunk from 'read-chunk'
 import imageSize from 'image-size'
 import prettyBytes from 'pretty-bytes'
+import isPng from './utils/isPng'
 
 const checkImage = (t, path) => {
   const buffer = readChunk.sync(path, 0, 8)
