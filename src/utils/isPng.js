@@ -15,4 +15,4 @@ const isPng = (buffer) => {
 	)
 }
 
-module.exports = isPng
+export default isPng

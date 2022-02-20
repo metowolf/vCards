@@ -1,10 +1,7 @@
 import del from 'del'
-import path from 'path'
-import { globby } from 'globby'
 import through2 from 'through2'
 
 import gulp from 'gulp'
-import ava from 'gulp-ava'
 import zip from 'gulp-zip'
 import concat from 'gulp-concat'
 import rename from 'gulp-rename'
@@ -38,11 +35,6 @@ const allinone = () => {
     .pipe(gulp.dest('./temp/汇总'))
 }
 
-const test = () => {
-  return gulp.src('./src/test.js')
-    .pipe(ava({verbose: true}))
-}
-
 const clean = () => {
   return del([
     'public',
@@ -53,7 +45,6 @@ const clean = () => {
 const build = gulp.series(clean, generator, combine, allinone, archive)
 
 export {
-  test,
   generator,
   combine,
   allinone,

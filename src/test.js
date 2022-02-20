@@ -1,14 +1,17 @@
 import fs from 'fs'
 import test from 'ava'
-import globby from 'globby'
+import { globby } from 'globby'
 import yaml from 'js-yaml'
-import readChunk from 'read-chunk'
+import { readChunkSync } from 'read-chunk'
 import imageSize from 'image-size'
 import prettyBytes from 'pretty-bytes'
-import isPng from './utils/isPng'
+import isPng from './utils/isPng.js'
 
 const checkImage = (t, path) => {
-  const buffer = readChunk.sync(path, 0, 8)
+  const buffer = readChunkSync(path, {
+    startPosition: 0,
+    length: 8
+  })
   if (!isPng(buffer)) {
     t.fail('图片格式不合法')
   }
