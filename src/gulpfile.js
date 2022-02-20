@@ -1,45 +1,45 @@
-const del = require('del')
-const path = require('path')
-const globby = require('globby')
-const through2 = require('through2')
+import del from 'del'
+import path from 'path'
+import { globby } from 'globby'
+import through2 from 'through2'
 
-const { series, src, dest } = require('gulp')
-const ava = require('gulp-ava')
-const zip = require('gulp-zip')
-const concat = require('gulp-concat')
-const rename = require("gulp-rename")
-const concatFolders = require('gulp-concat-folders')
+import gulp from 'gulp'
+import ava from 'gulp-ava'
+import zip from 'gulp-zip'
+import concat from 'gulp-concat'
+import rename from 'gulp-rename'
+import concatFolders from 'gulp-concat-folders'
 
-const plugin_vcard = require('./plugins/vcard')
+import plugin_vcard from './plugins/vcard.js'
 
 const generator = () => {
-  return src('data/*/*.yaml')
+  return gulp.src('data/*/*.yaml')
     .pipe(through2.obj(plugin_vcard))
     .pipe(rename({ extname: '.vcf' }))
-    .pipe(dest('./temp'))
+    .pipe(gulp.dest('./temp'))
 }
 
 const archive = () => {
-  return src('temp/**')
+  return gulp.src('temp/**')
     .pipe(zip('archive.zip'))
-    .pipe(dest('./public'))
+    .pipe(gulp.dest('./public'))
 }
 
 const combine = () => {
-  return src('temp/*/*.vcf')
+  return gulp.src('temp/*/*.vcf')
     .pipe(concatFolders('汇总'))
     .pipe(rename({ extname: '.all.vcf' }))
-    .pipe(dest('./temp'))
+    .pipe(gulp.dest('./temp'))
 }
 
 const allinone = () => {
-  return src('temp/汇总/*.all.vcf')
+  return gulp.src('temp/汇总/*.all.vcf')
     .pipe(concat('全部.vcf'))
-    .pipe(dest('./temp/汇总'))
+    .pipe(gulp.dest('./temp/汇总'))
 }
 
 const test = () => {
-  return src('./src/test.js')
+  return gulp.src('./src/test.js')
     .pipe(ava({verbose: true}))
 }
 
@@ -50,9 +50,13 @@ const clean = () => {
   ])
 }
 
-exports.test = test
-exports.generator = generator
-exports.combine = combine
-exports.allinone = allinone
-exports.archive = archive
-exports.build = series(test, clean, generator, combine, allinone, archive)
+const build = gulp.series(clean, generator, combine, allinone, archive)
+
+export {
+  test,
+  generator,
+  combine,
+  allinone,
+  archive,
+  build
+}

@@ -1,6 +1,6 @@
-const fs = require('fs')
-const yaml = require('js-yaml')
-const vCardsJS = require('vcards-js')
+import fs from 'fs'
+import yaml from 'js-yaml'
+import vCardsJS from 'vcards-js'
 
 const plugin = (file, _, cb) => {
   const path = file.path
@@ -17,4 +17,4 @@ const plugin = (file, _, cb) => {
   cb(null, file)
 }
 
-module.exports = plugin
+export default plugin
