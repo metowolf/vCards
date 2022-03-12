@@ -1,5 +1,5 @@
 basic:
   organization: 美团
-  cellPhone:
+  workPhone:
     - 10107888
-  url: http://www.meituan.com
+  workUrl: http://www.meituan.com
