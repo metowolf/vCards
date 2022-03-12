@@ -1,3 +1,7 @@
 basic:
   organization: 通信行程卡
+  cellPhone:
+    - 10000
+    - 10086
+    - 10010
   url: https://xc.caict.ac.cn/appPortal.html

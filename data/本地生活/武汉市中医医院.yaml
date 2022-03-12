@@ -1,9 +1,5 @@
 basic:
   organization: 武汉市中医医院
-  workPhone:
+  cellPhone:
     - 027-82851849
-  workFax:
-    - +86 27 82835626
-  workEmail:
-    - whszyyytsx@163.com
-  workUrl: http://www.whtcm.com/
+  url: http://www.whtcm.com/

@@ -1,3 +1,5 @@
 basic:
   organization: 完美邮箱
+  cellPhone:
+    - 00000000
   url: https://www.88.com/

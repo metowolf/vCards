@@ -1,3 +1,5 @@
 basic:
   organization: Github
+  cellPhone:
+    - 00000000
   url: https://github.com
