@@ -24,7 +24,7 @@ const plugin = (file, _, cb) => {
 
   let rev = new Date(Math.max(new Date(lastYamlChangeDateString), new Date(lastPngChangeDateString))).toISOString()
   
-  formatted = vCard.getFormattedString()
+  let formatted = vCard.getFormattedString()
   formatted = formatted.replace(/REV:[\d\-:T\.Z]+/, 'REV:' + rev)
   file.contents = Buffer.from(formatted)
   cb(null, file)
