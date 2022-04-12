@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "npm run gulp build",
+    "radicale": "npm run gulp radicale",
     "gulp": "gulp --gulpfile src/gulpfile.js --cwd ./",
     "test": "npx ava src/test.js"
   },
