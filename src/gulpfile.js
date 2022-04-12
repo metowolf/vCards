@@ -1,3 +1,4 @@
+import fs from 'fs'
 import del from 'del'
 import through2 from 'through2'
 
