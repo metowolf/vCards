@@ -50,6 +50,7 @@ vCards CN
    - 无 svg 需要使用 Inkscape 改绘转换
    - 特殊情况特殊处理
  - 图像大小压缩在 `20 kB` 内
+   - 可通过[TinyPNG](https://tinypng.com/)压缩
 
 ![Design](https://user-images.githubusercontent.com/2666735/60966995-224fae00-a34c-11e9-970c-ea5fa15186c6.png)
 
