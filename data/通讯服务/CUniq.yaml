@@ -1,6 +1,8 @@
 basic:
   organization: CUniq
   cellPhone:
-    - (852)2122 1188
-    - (86)130 6840 0177
+    - +852 21221188
+    - +86 13068400177
+  workEmail:
+    - hk-cs@cuniq.com
   url: https://www.cuniq.com/
