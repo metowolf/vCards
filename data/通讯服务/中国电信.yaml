@@ -3,6 +3,7 @@ basic:
   cellPhone:
     - 10000
     - 10001
+    - 10006
     - 100003
     - 10001666
   url: https://www.189.cn/
