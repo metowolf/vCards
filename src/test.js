@@ -6,6 +6,7 @@ import { readChunkSync } from 'read-chunk'
 import imageSize from 'image-size'
 import prettyBytes from 'pretty-bytes'
 import isPng from './utils/isPng.js'
+import blockList from './const/block.js'
 
 const checkImage = (t, path) => {
   const buffer = readChunkSync(path, {
@@ -33,6 +34,12 @@ const checkVCard = (t, path) => {
   for (let phone of json.basic.cellPhone) {
     if (phone.toString().substr(0, 3) === '106') {
       t.fail('不收录 106 短信通道号码')
+    }
+  }
+
+  for (const block of blockList) {
+    if (block.organization === json.basic.organization) {
+      t.fail(`不收录 ${block.organization}，原因：${block.reason}`)
     }
   }
 
