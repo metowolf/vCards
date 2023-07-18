@@ -19,8 +19,8 @@ const plugin = (file, _, cb) => {
   }
   
   vCard.photo.embedFromFile(path.replace('.yaml', '.png'))
-  let lastYamlChangeDateString = execSync('git log -1 --pretty="format:%ci" ' + path).toString().trim().replace(/\s\+\d+/, '')
-  let lastPngChangeDateString = execSync('git log -1 --pretty="format:%ci" ' + path.replace('.yaml', '.png')).toString().trim().replace(/\s\+\d+/, '')
+  let lastYamlChangeDateString = execSync(`git log -1 --pretty="format:%ci" "${path}"`).toString().trim().replace(/\s\+\d+/, '')
+  let lastPngChangeDateString = execSync(`git log -1 --pretty="format:%ci" "${path.replace('yaml', 'png')}"`).toString().trim().replace(/\s\+\d+/, '')
 
   let rev = new Date(Math.max(new Date(lastYamlChangeDateString), new Date(lastPngChangeDateString))).toISOString()
   
