@@ -5,6 +5,12 @@ vCards CN
 
 ![Screenshot](https://user-images.githubusercontent.com/2666735/59692672-0b6bdf00-9218-11e9-881e-5856e263f3aa.png)
 
+## CardDAV 服务
+
+ - 服务器：`vcards.metowolf.com`
+ - 用户名：`cn`
+ - 密码：`cn` 或任意填写
+
 ## 使用指南
 
  1. 到 https://github.com/metowolf/vCards/releases 下载最新的打包文件 `archive.zip`；
