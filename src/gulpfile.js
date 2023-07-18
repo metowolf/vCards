@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import del from 'del'
+import { deleteAsync } from 'del'
 import through2 from 'through2'
 
 import gulp from 'gulp'
@@ -46,7 +46,7 @@ const allinone = () => {
 }
 
 const clean = () => {
-  return del([
+  return deleteAsync([
     'public',
     'temp'
   ])
@@ -64,7 +64,7 @@ const createRadicale = () => {
 }
 
 const cleanRadicale = () => {
-  return del([
+  return deleteAsync([
     'radicale'
   ], {force: true})
 }
