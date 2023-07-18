@@ -30,6 +30,6 @@ jobs:
         run: |
           IMAGE_VERSION=`cat package.json | jq -r '.version'`
           echo $DOCKER_TOKEN | docker login -u metowolf --password-stdin
-          docker build -t metowolf/vcards:$IMAGE_VERSION --squash --push .
+          docker build -t metowolf/vcards:$IMAGE_VERSION --push .
           echo $GITHUB_TOKEN | docker login ghcr.io -u metowolf --password-stdin
-          docker build -t ghcr.io/metowolf/vcards:$IMAGE_VERSION --squash --push .
+          docker build -t ghcr.io/metowolf/vcards:$IMAGE_VERSION --push .
