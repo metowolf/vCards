@@ -1,0 +1,5 @@
+basic:
+  organization: 中国消防救援
+  cellPhone:
+    - 119
+  url: https://www.119.gov.cn
