@@ -2,4 +2,6 @@ basic:
   organization: 中国工商银行
   cellPhone:
     - 95588
+  workEmail:
+    - webmaster@icbc.com.cn
   url: http://www.icbc.com.cn/
