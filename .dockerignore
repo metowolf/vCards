@@ -1,0 +1,6 @@
+node_modules
+temp
+public
+*.zip
+.DS_Store
+radicale

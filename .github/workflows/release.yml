@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+    - "data/**"
+  workflow_dispatch:
+
+jobs:
+  release-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn install
+          yarn build
+          gh release create $(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1) public/*
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build image and push
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          IMAGE_VERSION=`cat package.json | jq -r '.version'`
+          echo $DOCKER_TOKEN | docker login -u metowolf --password-stdin
+          docker build -t metowolf/vcards:$IMAGE_VERSION .
+          docker push metowolf/vcards:$IMAGE_VERSION
+          echo $GITHUB_TOKEN | docker login ghcr.io -u metowolf --password-stdin
+          docker build -t ghcr.io/metowolf/vcards:$IMAGE_VERSION .
+          docker push ghcr.io/metowolf/vcards:$IMAGE_VERSION

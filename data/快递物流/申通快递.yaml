@@ -2,5 +2,6 @@ basic:
   organization: 申通快递
   cellPhone:
     - 95543
+    - 95089 # 派件提醒
     - 4008895543
-  url: http://www.sto.cn/
+  url: https://www.sto.cn/
