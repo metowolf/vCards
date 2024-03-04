@@ -1,5 +1,5 @@
 basic:
   organization: 微信支付
   cellPhone:
-    - 95017
+    - +86 95017
   url: https://pay.weixin.qq.com/
