@@ -1,1 +1,5 @@
-
+basic:
+  organization: Chat2GPT4
+  workEmail:
+    - chat@chat2gpt4.com
+  url: https://chat2gpt4.com/
