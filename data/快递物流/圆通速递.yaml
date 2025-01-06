@@ -1,6 +1,6 @@
 basic:
   organization: 圆通速递
   cellPhone:
-    - +86 95554
-    - +86 95161 # 派件提醒
+    - 95554
+    - 95161 # 派件提醒
   url: https://www.yto.net.cn/

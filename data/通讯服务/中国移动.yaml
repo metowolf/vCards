@@ -1,6 +1,7 @@
 basic:
   organization: 中国移动
   cellPhone:
-    - +86 10086
-    - +86 1008611 #话费查询
+    - 10086
+    - 1008611
+    - 10085
   url: https://www.10086.cn/

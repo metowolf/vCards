@@ -5,7 +5,7 @@ WORKDIR /app
 RUN yarn && yarn radicale
 
 
-FROM alpine
+FROM alpine:edge
 
 RUN apk add --no-cache \
     radicale \
