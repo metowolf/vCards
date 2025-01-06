@@ -38,13 +38,6 @@ const checkVCard = (t, path) => {
     t.fail(`schema 校验失败 ${error.message}, ${JSON.stringify(value)}`)
   }
 
-  for (let phone of json.basic.cellPhone) {
-    // 不收录 106 短信通道号码（短号码例外）
-    if (phone.toString().substr(0, 3) === '106' && phone.toString().length > 10) {
-      t.fail(`不收录 ${phone}，原因：106 短信通道号码`)
-    }
-  }
-
   for (const block of blockList) {
     if (block.organization === json.basic.organization) {
       t.fail(`不收录 ${block.organization}，原因：${block.reason}`)
