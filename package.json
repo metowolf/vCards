@@ -25,6 +25,7 @@
     "image-size": "^1.0.2",
     "joi": "^17.9.2",
     "js-yaml": "^4.1.0",
+    "pinyin-pro": "^3.26.0",
     "pretty-bytes": "^6.1.1",
     "read-chunk": "^4.0.3",
     "vcards-js": "^2.10.0"
