@@ -4,3 +4,4 @@ public
 *.zip
 .DS_Store
 radicale
+.vs
