@@ -2351,6 +2351,11 @@ pinkie@^2.0.0:
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha512-MnUuEycAemtSaeFSjXKW/aroV7akBbY+Sv+RkyqFjgAe73F+MR0TBWKBRDkmfWq/HiFmdavfZ1G7h4SPZXaCSg==
 
+pinyin-pro@^3.26.0:
+  version "3.26.0"
+  resolved "https://registry.yarnpkg.com/pinyin-pro/-/pinyin-pro-3.26.0.tgz#9e3b8a9f848263b81552d56e9319f520f7709ad6"
+  integrity sha512-HcBZZb0pvm0/JkPhZHWA5Hqp2cWHXrrW/WrV+OtaYYM+kf35ffvZppIUuGmyuQ7gDr1JDJKMkbEE+GN0wfMoGg==
+
 pkg-conf@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/pkg-conf/-/pkg-conf-4.0.0.tgz#63ace00cbacfa94c2226aee133800802d3e3b80c"

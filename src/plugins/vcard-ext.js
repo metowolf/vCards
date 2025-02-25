@@ -2,6 +2,7 @@ import fs from 'fs'
 import yaml from 'js-yaml'
 import vCardsJS from 'vcards-js'
 import {execSync} from 'child_process'
+import addPhoneticField from '../utils/pinyin.js'
 
 const plugin = (file, _, cb) => {
   const path = file.path
@@ -26,6 +27,7 @@ const plugin = (file, _, cb) => {
   
   let formatted = vCard.getFormattedString()
   formatted = formatted.replace(/REV:[\d\-:T\.Z]+/, 'REV:' + rev)
+  formatted = addPhoneticField(formatted, 'ORG')
   file.contents = Buffer.from(formatted)
   cb(null, file)
 }
