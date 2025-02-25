@@ -15,8 +15,10 @@ vCards CN
  - 密码：`cn` 或任意填写
 
 步骤：
-1. [iOS](https://support.apple.com/zh-sg/guide/iphone/ipha0d932e96/ios)：「设置」--「通讯录」--「账户」--「添加账户」-- 「其他」--「添加 CardDAV 账户」
+1. [iOS](https://support.apple.com/zh-cn/guide/iphone/ipha0d932e96/ios)：「设置」--「通讯录」--「账户」--「添加账户」-- 「其他」--「添加 CardDAV 账户」
 2. [Mac](https://support.apple.com/zh-cn/guide/contacts/adrb7e5aaa2a/mac)：「通讯录」--「设置」--「账户」--「其他通讯录账户」
+
+⚠️ 注意：默认 iOS 获取新资料的方式为「自动」，该情况只会在连接电源和 WLAN 的情况下才会进行数据推送，可以适当等待一段时间。
 
 ### 下载导入
 
