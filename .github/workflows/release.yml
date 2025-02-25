@@ -5,6 +5,7 @@ on:
     branches: [ "master" ]
     paths:
     - "data/**"
+    - ".github/**"
   workflow_dispatch:
 
 jobs:
@@ -35,7 +36,12 @@ jobs:
           IMAGE_VERSION=`cat package.json | jq -r '.version'`
           echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
           docker build -t $DOCKER_USERNAME/vcards:$IMAGE_VERSION .
+          docker tag $DOCKER_USERNAME/vcards:$IMAGE_VERSION $DOCKER_USERNAME/vcards:latest
           docker push $DOCKER_USERNAME/vcards:$IMAGE_VERSION
+          docker push $DOCKER_USERNAME/vcards:latest
+          
           echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
           docker build -t ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION .
+          docker tag ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION ghcr.io/$GITHUB_USERNAME/vcards:latest
           docker push ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION
+          docker push ghcr.io/$GITHUB_USERNAME/vcards:latest
