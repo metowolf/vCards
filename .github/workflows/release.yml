@@ -29,7 +29,7 @@ jobs:
         env:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOCKER_USERNAME: ${{ vars.Docker_USERNAME }}
+          DOCKER_USERNAME: ${{ github.actor }}
           GITHUB_USERNAME: ${{ github.actor }}
         run: |
           IMAGE_VERSION=`cat package.json | jq -r '.version'`
