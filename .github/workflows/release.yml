@@ -22,12 +22,9 @@ jobs:
           yarn build
           gh release create $(date +'%Y.%m.%d-%H%M%S') public/*
       - name: Delete History Release
-        uses: sgpublic/delete-release-action@v1.1
+        uses: dev-drprasad/delete-older-releases@v0.3.4
         with:
-          release-drop: true
-          release-keep-count: 5
-          release-drop-tag: true
-          draft-drop: false
+          keep_latest: 5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   docker-build:
