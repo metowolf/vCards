@@ -27,6 +27,7 @@ jobs:
           release-drop: true
           release-keep-count: 5
           release-drop-tag: true
+          draft-drop: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   docker-build:
