@@ -1,0 +1,12 @@
+basic:
+  organization: 万豪（中国）预定中心
+  cellPhone:
+    - 中国大陆-预订（移动）：4006886886
+    - 中国香港：85230181475
+    - 中国澳门：85368570534
+    - 中国台湾：08090929231
+    - 中国大陆-预订（固定）：4006663197
+  url: https://www.marriott.com.cn/
+  email:
+    address: cncontentsupport@marriott.com
+    label: 中国大陆
