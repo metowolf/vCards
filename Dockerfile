@@ -32,6 +32,9 @@ RUN apk add --no-cache \
     echo '[server]'; \
     echo 'hosts = 0.0.0.0:5232, [::]:5232'; \
     echo; \
+    echo '[auth]'; \
+    echo 'type = none'; \
+    echo; \
     echo '[web]'; \
     echo 'type = none'; \
     echo; \
