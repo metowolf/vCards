@@ -1,0 +1,11 @@
+basic:
+  organization: 万豪（中国）客户服务
+  cellPhone:
+    - 中国大陆-客服：4006889889
+    - 中国香港-客服：85230181466
+    - 中国澳门-客服：85368570526
+    - 中国台湾-客服：0809092923
+  url: https://www.marriott.com.cn/
+  email:
+    address: cncontentsupport@marriott.com
+    label: 中国大陆
