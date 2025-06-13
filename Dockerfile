@@ -48,7 +48,7 @@ RUN apk add --no-cache \
   } > /etc/radicale/config
 
 COPY --from=builder /app/radicale/ios/ /app/vcards/collection-root/cn/
-COPY --from=builder /app/radicale/macos/ /app/vcards/collection-root/cn-macos/
+COPY --from=builder /app/radicale/macos/ /app/vcards/collection-root/cnmacos/
 
 EXPOSE 5232
 

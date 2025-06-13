@@ -80,23 +80,24 @@ const distRadicale = () => {
     .pipe(gulp.dest('./radicale/ios'))
 }
 
+// 新增：所有 vcf 和 props 放到 radicale/macos/全部/
 const distRadicaleMacos = (done) => {
-  const macosDir = './radicale/macos';
-  if (!fs.existsSync(macosDir)) fs.mkdirSync(macosDir, {recursive: true});
+  const allDir = './radicale/macos/全部';
+  if (!fs.existsSync(allDir)) fs.mkdirSync(allDir, {recursive: true});
   let totalCount = 0;
-  // 1. 复制所有 vcf 文件
+  // 1. 复制所有 vcf 文件到 radicale/macos/全部/
   const tempFolders = fs.readdirSync('temp').filter(f => fs.statSync(path.join('temp', f)).isDirectory());
   tempFolders.forEach(folder => {
     const folderPath = path.join('temp', folder);
     const vcfFiles = fs.readdirSync(folderPath).filter(f => f.endsWith('.vcf'));
     vcfFiles.forEach(file => {
-      fs.copyFileSync(path.join(folderPath, file), path.join(macosDir, file));
+      fs.copyFileSync(path.join(folderPath, file), path.join(allDir, file));
     });
     totalCount += vcfFiles.length;
   });
-  // 2. 只生成一个 props 文件
+  // 2. 只在 radicale/macos/全部/ 下生成一个 props 文件
   fs.writeFileSync(
-    path.join(macosDir, '.Radicale.props'),
+    path.join(allDir, '.Radicale.props'),
     `{"D:displayname": "全部(${totalCount})", "tag": "VADDRESSBOOK"}`
   );
   done();
