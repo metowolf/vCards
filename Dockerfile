@@ -49,6 +49,10 @@ RUN apk add --no-cache \
 
 COPY --from=builder /app/radicale/ /app/vcards/collection-root/cn/
 
+# 新增：平铺所有 vcf 到 cn-macos 目录
+RUN mkdir -p /app/vcards/collection-root/cn-macos/ \
+  && find /app/radicale -type f -name '*.vcf' -exec cp {} /app/vcards/collection-root/cn-macos/ \;
+
 EXPOSE 5232
 
 CMD ["radicale"]
