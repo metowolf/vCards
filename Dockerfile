@@ -47,11 +47,8 @@ RUN apk add --no-cache \
     echo 'file = /etc/radicale/rights'; \
   } > /etc/radicale/config
 
-COPY --from=builder /app/radicale/ /app/vcards/collection-root/cn/
-
-# 新增：平铺所有 vcf 到 cn-macos 目录
-RUN mkdir -p /app/vcards/collection-root/cn-macos/ \
-  && find /app/vcards/collection-root/cn/*/*.vcf -type f -name '*.vcf' -exec cp {} /app/vcards/collection-root/cn-macos/ \;
+COPY --from=builder /app/radicale/ios/ /app/vcards/collection-root/cn/
+COPY --from=builder /app/radicale/macos/ /app/vcards/collection-root/cn-macos/
 
 EXPOSE 5232
 

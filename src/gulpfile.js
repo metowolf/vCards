@@ -77,11 +77,39 @@ const cleanRadicale = () => {
 
 const distRadicale = () => {
   return gulp.src('temp/**', {dot: true})
-    .pipe(gulp.dest('./radicale'))
+    .pipe(gulp.dest('./radicale/ios'))
+}
+
+const distRadicaleMacos = (done) => {
+  const macosDir = './radicale/macos';
+  if (!fs.existsSync(macosDir)) fs.mkdirSync(macosDir, {recursive: true});
+  let totalCount = 0;
+  // 1. 复制所有 vcf 文件
+  const tempFolders = fs.readdirSync('temp').filter(f => fs.statSync(path.join('temp', f)).isDirectory());
+  tempFolders.forEach(folder => {
+    const folderPath = path.join('temp', folder);
+    const vcfFiles = fs.readdirSync(folderPath).filter(f => f.endsWith('.vcf'));
+    vcfFiles.forEach(file => {
+      fs.copyFileSync(path.join(folderPath, file), path.join(macosDir, file));
+    });
+    totalCount += vcfFiles.length;
+  });
+  // 2. 只生成一个 props 文件
+  fs.writeFileSync(
+    path.join(macosDir, '.Radicale.props'),
+    `{"D:displayname": "全部(${totalCount})", "tag": "VADDRESSBOOK"}`
+  );
+  done();
 }
 
 const build = gulp.series(clean, generator, combine, allinone, archive)
-const radicale = gulp.series(clean, generator_ext, createRadicale, cleanRadicale, distRadicale)
+const radicale = gulp.series(
+  clean,
+  generator_ext,
+  createRadicale,
+  cleanRadicale,
+  gulp.parallel(distRadicale, distRadicaleMacos)
+)
 
 export {
   generator,
