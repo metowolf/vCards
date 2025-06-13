@@ -5,6 +5,7 @@ on:
     branches: [ "master" ]
     paths:
     - "data/**"
+    - ".github/**"
   workflow_dispatch:
 
 jobs:
@@ -19,7 +20,13 @@ jobs:
         run: |
           yarn install
           yarn build
-          gh release create $(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1) public/*
+          gh release create $(date +'%Y.%m.%d-%H%M%S') public/*
+      - name: Delete History Release
+        uses: dev-drprasad/delete-older-releases@v0.3.4
+        with:
+          keep_latest: 5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   docker-build:
     runs-on: ubuntu-latest
     steps:
@@ -29,11 +36,18 @@ jobs:
         env:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCKER_USERNAME: ${{ github.actor }}
+          GITHUB_USERNAME: ${{ github.actor }}
         run: |
           IMAGE_VERSION=`cat package.json | jq -r '.version'`
-          echo $DOCKER_TOKEN | docker login -u metowolf --password-stdin
-          docker build -t metowolf/vcards:$IMAGE_VERSION .
-          docker push metowolf/vcards:$IMAGE_VERSION
-          echo $GITHUB_TOKEN | docker login ghcr.io -u metowolf --password-stdin
-          docker build -t ghcr.io/metowolf/vcards:$IMAGE_VERSION .
-          docker push ghcr.io/metowolf/vcards:$IMAGE_VERSION
+          echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
+          docker build -t $DOCKER_USERNAME/vcards:$IMAGE_VERSION .
+          docker tag $DOCKER_USERNAME/vcards:$IMAGE_VERSION $DOCKER_USERNAME/vcards:latest
+          docker push $DOCKER_USERNAME/vcards:$IMAGE_VERSION
+          docker push $DOCKER_USERNAME/vcards:latest
+          
+          echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
+          docker build -t ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION .
+          docker tag ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION ghcr.io/$GITHUB_USERNAME/vcards:latest
+          docker push ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION
+          docker push ghcr.io/$GITHUB_USERNAME/vcards:latest

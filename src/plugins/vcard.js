@@ -1,6 +1,7 @@
 import fs from 'fs'
 import yaml from 'js-yaml'
 import vCardsJS from 'vcards-js'
+import addPhoneticField from '../utils/pinyin.js'
 
 const plugin = (file, _, cb) => {
   const path = file.path
@@ -21,7 +22,9 @@ const plugin = (file, _, cb) => {
     })
   }
   vCard.photo.embedFromFile(path.replace('.yaml', '.png'))
-  file.contents = Buffer.from(vCard.getFormattedString())
+  let formatted = vCard.getFormattedString()
+  formatted = addPhoneticField(formatted, 'ORG')
+  file.contents = Buffer.from(formatted)
   cb(null, file)
 }
 

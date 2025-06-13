@@ -58,7 +58,13 @@ const createRadicale = () => {
       return fs.statSync(path.join('temp', f)).isDirectory();
     })
   folders.map(function(folder){
-    fs.writeFileSync(path.join('temp', folder, '/.Radicale.props'), '{"D:displayname": "' + folder + '", "tag": "VADDRESSBOOK"}')
+    const fileCount = fs.readdirSync(path.join('temp', folder))
+      .filter(file => file.endsWith('.vcf'))
+      .length;
+    fs.writeFileSync(
+      path.join('temp', folder, '/.Radicale.props'), 
+      `{"D:displayname": "${folder}(${fileCount})", "tag": "VADDRESSBOOK"}`
+    )
   })
   return gulp.src('temp/**', {})
 }
