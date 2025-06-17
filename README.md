@@ -11,7 +11,7 @@
 ### 方法一：安装 CardDAV 描述文件（推荐）
 
 1. 使用**系统相机**扫描下方二维码，下载配置描述文件  
->   <img src="https://github.com/user-attachments/assets/238f9d9a-5aa6-4636-8e67-4829535eaab9" width="150px" height="150px" />
+>   <a href="https://vcards.metowolf.com/vcards.mobileconfig"><img src="https://github.com/user-attachments/assets/238f9d9a-5aa6-4636-8e67-4829535eaab9" width="150px" height="150px" /></a>
 
 2. 打开“设置”App，轻点“已下载描述文件”或“注册 [组织的名称]”  
 >   <img src="https://github.com/user-attachments/assets/12997c2d-6172-49f0-9236-0b4f30ad9ebd" width="300px" />
