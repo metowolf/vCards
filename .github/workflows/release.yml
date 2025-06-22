@@ -6,6 +6,8 @@ on:
     paths:
     - "data/**"
     - ".github/**"
+    - "Dockerfile"
+    - "package.json"
   workflow_dispatch:
 
 jobs:

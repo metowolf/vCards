@@ -3,5 +3,6 @@ basic:
   cellPhone:
     - 95568
     - 95768 # 信用卡外呼
+    - 952568 # 信用卡外呼
   url: https://www.cmbc.com.cn/
   
