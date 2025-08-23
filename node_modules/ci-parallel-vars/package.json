@@ -1,0 +1,36 @@
+{
+  "name": "ci-parallel-vars",
+  "version": "1.0.1",
+  "description": "Get CI environment variables for parallelizing builds",
+  "main": "index.js",
+  "repository": "https://github.com/jamiebuilds/ci-parallel-vars",
+  "author": "Jamie Kyle <me@thejameskyle.com>",
+  "license": "MIT",
+  "keywords": [
+    "ci",
+    "env",
+    "vars",
+    "index",
+    "total",
+    "parallel",
+    "builds",
+    "tests",
+    "travis",
+    "circle",
+    "buildkite",
+    "bitbucket",
+    "pipelines",
+    "knapsack"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "flow-bin": "^0.73.0",
+    "spawndamnit": "^2.0.0"
+  }
+}

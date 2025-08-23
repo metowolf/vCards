@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>PayloadContent</key>
+    <array>
+      <dict>
+        {{#if accountDescription}}
+          <key>EmailAccountDescription</key>
+          <string>{{accountDescription}}</string>
+        {{/if}}
+
+        <key>EmailAccountType</key>
+        <string>EmailTypeIMAP</string>
+
+        {{#if emailAccountName}}
+            <key>EmailAccountName</key>
+            <string>{{emailAccountName}}</string>
+        {{/if}}
+
+        <key>EmailAddress</key>
+        <string>{{emailAddress}}</string>
+
+        <key>IncomingMailServerAuthentication</key>
+        <string>EmailAuthPassword</string>
+
+        <key>IncomingMailServerHostName</key>
+        <string>{{imap.hostname}}</string>
+
+        <key>IncomingMailServerPortNumber</key>
+        <integer>{{imap.port}}</integer>
+
+        <key>IncomingMailServerUseSSL</key>
+        {{#if imap.secure}}
+          <true/>
+        {{ else }}
+          <false/>
+        {{/if}}
+
+        <key>IncomingMailServerUsername</key>
+        <string>{{imap.username}}</string>
+
+        <key>IncomingPassword</key>
+        <string>{{imap.password}}</string>
+
+        <key>OutgoingMailServerAuthentication</key>
+        <string>{{#if smtp.username }}EmailAuthPassword{{else}}EmailAuthNone{{/if}}</string>
+
+        <key>OutgoingMailServerHostName</key>
+        <string>{{smtp.hostname}}</string>
+
+        <key>OutgoingMailServerPortNumber</key>
+        <integer>{{smtp.port}}</integer>
+
+        <key>OutgoingMailServerUseSSL</key>
+        {{#if smtp.secure}}
+          <true/>
+        {{ else }}
+          <false/>
+        {{/if}}
+
+        {{#if smtp.username }}
+          <key>OutgoingMailServerUsername</key>
+          <string>{{smtp.username}}</string>
+        {{/if}}
+
+        {{#if smtp.password}}
+          <key>OutgoingPassword</key>
+          <string>{{imap.password}}</string>
+        {{else}}
+          <key>OutgoingPasswordSameAsIncomingPassword</key>
+          <true/>
+        {{/if}}
+
+        <key>PayloadDescription</key>
+        <string>Configures email account.</string>
+
+        <key>PayloadDisplayName</key>
+        <string>{{ accountName }}</string>
+
+        <key>PayloadIdentifier</key>
+        <string>{{identifier}}</string>
+
+        {{#if organization}}
+          <key>PayloadOrganization</key>
+          <string>{{organization}}</string>
+        {{/if}}
+
+        <key>PayloadType</key>
+        <string>com.apple.mail.managed</string>
+
+        <key>PayloadUUID</key>
+        <string>{{contentUuid}}</string>
+
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+
+        <key>PreventAppSheet</key>
+        <false/>
+
+        <key>PreventMove</key>
+        <false/>
+
+        <key>SMIMEEnabled</key>
+        <false/>
+
+        <key>allowMailDrop</key>
+        <true/>
+
+      </dict>
+    </array>
+
+    <key>PayloadDescription</key>
+    <string>{{#if displayDescription}}{{displayDescription}}{{else}}Install this profile to auto configure email account for {{emailAddress}}.{{/if}}</string>
+
+    <key>PayloadDisplayName</key>
+    <string>{{ displayName }}</string>
+
+    <key>PayloadIdentifier</key>
+    <string>{{identifier}}</string>
+
+    {{#if organization}}
+      <key>PayloadOrganization</key>
+      <string>{{organization}}</string>
+    {{/if}}
+
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+
+    <key>PayloadType</key>
+    <string>Configuration</string>
+
+    <key>PayloadUUID</key>
+    <string>{{plistUuid}}</string>
+
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+  </dict>
+</plist>

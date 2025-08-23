@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      {{#if accountDescription}}
+        <key>CardDAVAccountDescription</key>
+        <string>{{accountDescription}}</string>
+      {{/if}}
+
+      <key>CardDAVHostName</key>
+      <string>{{dav.hostname}}</string>
+
+      <key>CardDAVPort</key>
+      <integer>{{dav.port}}</integer>
+
+      <key>CardDAVPrincipalURL</key>
+      <string>{{dav.principalurl}}</string>
+
+      <key>CardDAVUseSSL</key>
+      {{#if dav.secure}}
+        <true/>
+      {{ else }}
+        <false/>
+      {{/if}}
+
+      <key>CardDAVUsername</key>
+      <string>{{dav.username}}</string>
+
+      <key>CardDAVPassword</key>
+      <string>{{dav.password}}</string>
+
+      <key>PayloadDescription</key>
+      <string>{{dav.username}} contacts</string>
+
+      <key>PayloadDisplayName</key>
+      <string>{{dav.username}} contacts</string>
+
+      <key>PayloadIdentifier</key>
+      <string>{{identifier}}</string>
+
+      {{#if organization}}
+        <key>PayloadOrganization</key>
+        <string>{{organization}}</string>
+      {{/if}}
+
+      <key>PayloadType</key>
+      <string>com.apple.carddav.account</string>
+
+      <key>PayloadUUID</key>
+      <string>{{contentUuid}}</string>
+
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+
+    </dict>
+  </array>
+
+  <key>PayloadDescription</key>
+  <string>{{#if displayDescription}}{{displayDescription}}{{else}}Install this profile to auto configure contacts for {{emailAddress}}.{{/if}}</string>
+
+  <key>PayloadDisplayName</key>
+  <string>{{displayName}}</string>
+
+  <key>PayloadIdentifier</key>
+  <string>{{identifier}}</string>
+
+  {{#if organization}}
+    <key>PayloadOrganization</key>
+    <string>{{organization}}</string>
+  {{/if}}
+
+  <key>PayloadRemovalDisallowed</key>
+  <false/>
+
+  <key>PayloadType</key>
+  <string>Configuration</string>
+
+  <key>PayloadUUID</key>
+  <string>{{plistUuid}}</string>
+
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+</dict>
+</plist>

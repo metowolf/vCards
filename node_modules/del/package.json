@@ -1,0 +1,73 @@
+{
+	"name": "del",
+	"version": "7.0.0",
+	"description": "Delete files and directories",
+	"license": "MIT",
+	"repository": "sindresorhus/del",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"types": "./index.d.ts",
+	"engines": {
+		"node": ">=14.16"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd",
+		"bench": "node benchmark.js"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"delete",
+		"files",
+		"folders",
+		"directories",
+		"remove",
+		"destroy",
+		"trash",
+		"unlink",
+		"clean",
+		"cleaning",
+		"cleanup",
+		"rm",
+		"rmrf",
+		"rimraf",
+		"rmdir",
+		"glob",
+		"gulpfriendly",
+		"file",
+		"folder",
+		"directory",
+		"fs",
+		"filesystem"
+	],
+	"dependencies": {
+		"globby": "^13.1.2",
+		"graceful-fs": "^4.2.10",
+		"is-glob": "^4.0.3",
+		"is-path-cwd": "^3.0.0",
+		"is-path-inside": "^4.0.0",
+		"p-map": "^5.5.0",
+		"rimraf": "^3.0.2",
+		"slash": "^4.0.0"
+	},
+	"devDependencies": {
+		"ava": "^4.3.1",
+		"benchmark": "^2.1.4",
+		"make-dir": "^3.1.0",
+		"tempy": "^3.0.0",
+		"tsd": "^0.22.0",
+		"xo": "^0.50.0"
+	},
+	"ava": {
+		"serial": true,
+		"workerThreads": false
+	}
+}
