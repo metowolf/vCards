@@ -75,17 +75,22 @@ jobs:
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
           
-          # 创建临时分支并切换
-          git checkout --orphan pages-temp
-          
-          # 添加构建产物
-          git add public-web/*
-          git commit -m "Deploy web build $(date +'%Y-%m-%d %H:%M:%S')"
-          
           # 删除原有的 pages 分支（如果存在）
-          git branch -D pages 2>/dev/null || true
           git push origin --delete pages 2>/dev/null || true
           
-          # 重命名当前分支为 pages 并强制推送
-          git branch -m pages
+          # 创建全新的 orphan 分支（无历史记录）
+          git checkout --orphan pages
+          
+          # 清空工作目录
+          git rm -rf . 2>/dev/null || true
+          
+          # 将 public-web 目录的内容移动到根目录
+          mv public-web/* ./
+          rmdir public-web
+          
+          # 添加所有文件并创建唯一的 commit
+          git add .
+          git commit -m "Deploy web build $(date +'%Y-%m-%d %H:%M:%S')"
+          
+          # 强制推送，创建全新的 pages 分支
           git push origin pages --force
