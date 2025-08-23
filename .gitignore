@@ -4,3 +4,5 @@ public
 *.zip
 .DS_Store
 radicale
+
+public-web

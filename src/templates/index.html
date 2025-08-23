@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vCards CN - 中国常用联系人头像库</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAEHRFWHRTb2Z0d2FyZQBTaHV0dGVyY4LQCQAABDJJREFUWIXFV1uIHFUQ/U5Vd8+8s5vNZjOzm2w2JpJEfCQhPhBBfKDiAxVBUBBBH3zwgYKgPvRBH3zwBT5QEEFRH/TBB4oPfCAoKIqCL3wgKCiKL0QwJpvNZnZ2ZmenX9XV5UN3z8xOz87sJuKBpu6+Xafqnqo6dascvw8RwXEcOI4Dx3HgOA4cx4HjOLjWEBEcx4HjOLjWEBEcx4HjOLjWEBEcx/m/AYgIjuPAcRw4joNrDRHBcRw4joNrDRHBcRw4joNrDRHBcRw4joNrDRHBcRw4joNrDRHBcRw4joNrDRHBcRw4joNrDRHBcRzd7jiOg2sBx3EAx3H+bwAigs=">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><span class="logo">📇</span> vCards</h1>
+            <p class="subtitle">中国常用联系人头像库 - 优化您的来电和信息界面体验</p>
+            <div class="stats">
+                <span id="total-count">加载中...</span> 个联系人，分为 <span id="category-count">-</span> 个分类
+            </div>
+        </header>
+
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="搜索联系人或分类..." />
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-category="all">全部</button>
+                <!-- 分类标签将由JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div id="vcard-grid" class="vcard-grid">
+                <!-- 卡片将由JavaScript动态生成 -->
+            </div>
+            
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>正在加载联系人数据...</p>
+            </div>
+
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <div class="empty-icon">🔍</div>
+                <h3>没有找到匹配的联系人</h3>
+                <p>请尝试其他搜索关键词或选择不同的分类</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>
+                Made with ❤️ by 
+                <a href="https://github.com/metowolf/vCards" target="_blank">metowolf</a>
+                | 
+                <a href="https://github.com/metowolf/vCards/blob/master/LICENSE" target="_blank">MIT License</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- 下载提示弹框 -->
+    <div id="download-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <img id="modal-icon" src="" alt="" class="modal-icon">
+                <h3 id="modal-title"></h3>
+            </div>
+            <div class="modal-body">
+                <p>即将下载 <strong id="modal-org-name"></strong> 的联系人卡片</p>
+                <div class="contact-info">
+                    <div id="modal-phones"></div>
+                    <div id="modal-url"></div>
+                    <div id="modal-emails"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-download" class="btn btn-primary">确认下载</button>
+                <button id="cancel-download" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
