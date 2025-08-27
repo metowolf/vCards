@@ -53,3 +53,44 @@ jobs:
           docker tag ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION ghcr.io/$GITHUB_USERNAME/vcards:latest
           docker push ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION
           docker push ghcr.io/$GITHUB_USERNAME/vcards:latest
+  
+  web-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install
+      - name: Build web
+        run: yarn build:web
+      - name: Deploy to pages branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          
+          # 删除原有的 pages 分支（如果存在）
+          git push origin --delete pages 2>/dev/null || true
+          
+          # 创建全新的 orphan 分支（无历史记录）
+          git checkout --orphan pages
+          
+          # 清空工作目录
+          git rm -rf . 2>/dev/null || true
+          
+          # 将 public-web 目录的内容移动到根目录
+          mv public-web/* ./
+          rmdir public-web
+          
+          # 添加所有文件并创建唯一的 commit
+          git add .
+          git commit -m "Deploy web build $(date +'%Y-%m-%d %H:%M:%S')"
+          
+          # 强制推送，创建全新的 pages 分支
+          git push origin pages --force
