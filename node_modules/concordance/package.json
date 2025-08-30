@@ -1,0 +1,50 @@
+{
+  "name": "concordance",
+  "version": "5.0.4",
+  "description": "Compare, format, diff and serialize any JavaScript value",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=10.18.0 <11 || >=12.14.0 <13 || >=14"
+  },
+  "scripts": {
+    "test": "as-i-preach && c8 ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/concordancejs/concordance.git"
+  },
+  "author": "Mark Wubben (https://novemberborn.net/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/concordancejs/concordance/issues"
+  },
+  "homepage": "https://github.com/concordancejs/concordance#readme",
+  "dependencies": {
+    "date-time": "^3.1.0",
+    "esutils": "^2.0.3",
+    "fast-diff": "^1.2.0",
+    "js-string-escape": "^1.0.1",
+    "lodash": "^4.17.15",
+    "md5-hex": "^3.0.1",
+    "semver": "^7.3.2",
+    "well-known-symbols": "^2.0.0"
+  },
+  "devDependencies": {
+    "@novemberborn/eslint-plugin-as-i-preach": "^12.0.0",
+    "ava": "^3.15.0",
+    "c8": "^7.1.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-ava": "^10.3.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-unicorn": "^17.2.0",
+    "proxyquire": "^2.1.3"
+  }
+}
