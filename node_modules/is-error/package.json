@@ -1,0 +1,44 @@
+{ "name": "is-error",
+  "version": "2.2.2",
+  "description": "Detect whether a value is an error",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/mk-pmb/is-error-js.git",
+  "main": "index",
+  "homepage": "https://github.com/mk-pmb/is-error-js",
+  "bugs": {
+    "url": "https://github.com/mk-pmb/is-error-js/issues"
+  },
+  "contributors": [
+    "Raynos",
+    "M.K. (https://github.com/mk-pmb)"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "coveralls": "^2.10.0",
+    "istanbul": "^0.3.5",
+    "lint-trap": "^1.0.0",
+    "opn": "^1.0.1",
+    "pre-commit": "0.0.11",
+    "tap-spec": "^2.1.1",
+    "tape": "^3.4.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "npm run jshint -s && npm run cover -s",
+    "unit-test": "node test/index.js | tap-spec",
+    "jshint": "lint-trap .",
+    "cover": "istanbul cover --report html --print detail -- test/index.js && npm run check-cover -s",
+    "check-cover": "istanbul check-coverage --branches=100 --lines=100 --functions=100",
+    "view-cover": "opn ./coverage/index.html",
+    "travis": "npm run cover -s && istanbul report lcov && ((cat coverage/lcov.info | coveralls) || true)"
+  },
+  "engine": {
+    "node": ">= 0.8.x"
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "pre-commit.silent": true,
+  "ngen-version": "5.1.0"
+}

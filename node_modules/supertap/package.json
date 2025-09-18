@@ -1,0 +1,68 @@
+{
+	"name": "supertap",
+	"version": "3.0.1",
+	"description": "Generate TAP output",
+	"license": "MIT",
+	"repository": "vadimdemedes/supertap",
+	"author": {
+		"name": "Vadim Demedes",
+		"email": "vdemedes@gmail.com",
+		"url": "github.com/vadimdemedes"
+	},
+	"engines": {
+		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"prepare": "npm run build",
+		"pretest": "npm run build",
+		"test": "xo && ava"
+	},
+	"type": "module",
+	"exports": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"tap",
+		"tape",
+		"output"
+	],
+	"dependencies": {
+		"indent-string": "^5.0.0",
+		"js-yaml": "^3.14.1",
+		"serialize-error": "^7.0.1",
+		"strip-ansi": "^7.0.1"
+	},
+	"devDependencies": {
+		"@sindresorhus/tsconfig": "^2.0.0",
+		"@types/js-yaml": "^3.12.7",
+		"@vdemedes/prettier-config": "^2.0.0",
+		"ava": "^4.0.1",
+		"ctrlc-exit": "^1.0.0",
+		"execa": "^6.0.0",
+		"faucet": "^0.0.1",
+		"p-each-series": "^3.0.0",
+		"prettier": "^2.5.1",
+		"tap-dot": "^2.0.0",
+		"tap-json": "^1.0.0",
+		"tap-min": "^2.0.0",
+		"tap-nyan": "^1.1.0",
+		"tap-out": "^3.0.0",
+		"tap-pessimist": "^1.0.1",
+		"tap-spec": "^5.0.0",
+		"tap-summary": "^4.0.0",
+		"typescript": "^4.5.5",
+		"wait-for-enter": "^1.0.0",
+		"xo": "^0.47.0"
+	},
+	"ava": {
+		"serial": true
+	},
+	"xo": {
+		"prettier": true
+	},
+	"prettier": "@vdemedes/prettier-config"
+}

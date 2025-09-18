@@ -1,0 +1,33 @@
+{
+  "name": "arrgv",
+  "version": "1.0.2",
+  "description": "Parsing string to array of args like node on bash do.",
+  "main": "index.js",
+  "author": "astur <astur@yandex.ru> (http://kozlov.am/)",
+  "scripts": {
+    "test": "eslint . && nyc ava -v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/astur/arrgv.git"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "eslint": "^5.4.0",
+    "eslint-config-astur": "^1.6.1",
+    "nyc": "^12.0.2"
+  },
+  "keywords": [
+    "arguments",
+    "cli",
+    "parcing",
+    "testing",
+    "options",
+    "args",
+    "argv"
+  ],
+  "license": "MIT"
+}

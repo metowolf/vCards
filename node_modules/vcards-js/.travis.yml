@@ -1,0 +1,11 @@
+language: node_js
+
+node_js:
+    - "node"
+
+script: 
+    - npm run test
+
+os:
+  - linux
+  - osx
