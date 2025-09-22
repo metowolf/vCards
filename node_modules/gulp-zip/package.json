@@ -1,0 +1,53 @@
+{
+	"name": "gulp-zip",
+	"version": "5.1.0",
+	"description": "ZIP compress files",
+	"license": "MIT",
+	"repository": "sindresorhus/gulp-zip",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"gulpplugin",
+		"zip",
+		"archive",
+		"archiver",
+		"compress",
+		"compression",
+		"file"
+	],
+	"dependencies": {
+		"get-stream": "^5.2.0",
+		"plugin-error": "^1.0.1",
+		"through2": "^3.0.1",
+		"vinyl": "^2.1.0",
+		"yazl": "^2.5.1"
+	},
+	"devDependencies": {
+		"ava": "^2.3.0",
+		"decompress-unzip": "^3.0.0",
+		"gulp": "^4.0.2",
+		"vinyl-assign": "^1.2.1",
+		"vinyl-file": "^3.0.0",
+		"xo": "^0.24.0"
+	},
+	"peerDependencies": {
+		"gulp": ">=4"
+	},
+	"peerDependenciesMeta": {
+		"gulp": {
+			"optional": true
+		}
+	}
+}

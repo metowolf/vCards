@@ -1,0 +1,38 @@
+{
+	"name": "arrify",
+	"version": "3.0.0",
+	"description": "Convert a value to an array",
+	"license": "MIT",
+	"repository": "sindresorhus/arrify",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"engines": {
+		"node": ">=12"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"array",
+		"arrify",
+		"arrayify",
+		"convert",
+		"value",
+		"ensure"
+	],
+	"devDependencies": {
+		"ava": "^3.15.0",
+		"tsd": "^0.14.0",
+		"xo": "^0.39.1"
+	}
+}
