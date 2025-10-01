@@ -1,0 +1,22 @@
+dist: xenial
+os: linux
+language: node_js
+node_js:
+- '6'
+- '7'
+- '8'
+- '9'
+
+env:
+  global:
+  - secure: R4tCAipsC0KdBPin8+rWedqptn0RXksLM20yZ0w8En0hhaglWCiIxA5uKt/6njXp9Q8FEKkVOyWF+yjq74jB6+KUu0dSK30pbmaAHhlXsL5kTWmY9vd7rxwcn1Hdf1sW15NqRX4hvWuIC32cA7vDr+58VPyum+A+yvPJICvgIlw=
+  - secure: sfEwCcmUrfFPIRPV8UwdJymRZ8YY20fuJiAlWfOUQSOccNGWB4RbUsD+iyc9XW5qB1kdOqxVkvZ0sKrYo3Uc4k8mhar7+yhP04hfNj4CWAigG3rtTugbar9kSQjwi/yEaTrb4kdP8HRYs5yjrEX/CGwjm3iHGOSyUw5du0PQfbk=
+
+jobs:
+  include:
+  - node_js: '8'
+    env: BROWSER_NAME=chrome BROWSER_VERSION=latest
+  - node_js: '8'
+    env: BROWSER_NAME=firefox BROWSER_VERSION=latest
+  - node_js: '8'
+    env: BROWSER_NAME=ie BROWSER_VERSION=11

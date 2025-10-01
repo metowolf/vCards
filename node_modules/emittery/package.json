@@ -1,0 +1,70 @@
+{
+	"name": "emittery",
+	"version": "1.0.1",
+	"description": "Simple and modern async event emitter",
+	"license": "MIT",
+	"repository": "sindresorhus/emittery",
+	"funding": "https://github.com/sindresorhus/emittery?sponsor=1",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"types": "./index.d.ts",
+	"engines": {
+		"node": ">=14.16"
+	},
+	"scripts": {
+		"test": "xo && nyc ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts",
+		"maps.js"
+	],
+	"keywords": [
+		"event",
+		"emitter",
+		"eventemitter",
+		"events",
+		"async",
+		"emit",
+		"on",
+		"once",
+		"off",
+		"listener",
+		"subscribe",
+		"unsubscribe",
+		"pubsub",
+		"tiny",
+		"addlistener",
+		"addeventlistener",
+		"dispatch",
+		"dispatcher",
+		"observer",
+		"trigger",
+		"await",
+		"promise",
+		"typescript",
+		"ts",
+		"typed"
+	],
+	"devDependencies": {
+		"@types/node": "^18.7.15",
+		"ava": "^4.3.3",
+		"delay": "^5.0.0",
+		"nyc": "^15.1.0",
+		"p-event": "^5.0.1",
+		"tsd": "^0.23.0",
+		"xo": "^0.52.3"
+	},
+	"nyc": {
+		"reporter": [
+			"html",
+			"lcov",
+			"text"
+		]
+	}
+}
