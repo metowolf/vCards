@@ -28,8 +28,14 @@ const generator_ext = () => {
 }
 
 const archive = () => {
-  return gulp.src('temp/**')
+  return gulp.src(['temp/**', '!temp/汇总/**'])
     .pipe(zip('archive.zip'))
+    .pipe(gulp.dest('./public'))
+}
+
+const distSummary = () => {
+  return gulp.src('temp/汇总/全部.vcf')
+    .pipe(rename('汇总.vcf'))
     .pipe(gulp.dest('./public'))
 }
 
@@ -260,7 +266,7 @@ const distRadicaleMacos = (done) => {
   done();
 }
 
-const build = gulp.series(clean, generator, combine, allinone, archive)
+const build = gulp.series(clean, generator, combine, allinone, distSummary, archive)
 const radicale = gulp.series(
   clean,
   generator_ext,
@@ -277,6 +283,7 @@ export {
   combine,
   allinone,
   archive,
+  distSummary,
   build,
   radicale,
   buildWeb
