@@ -11,5 +11,5 @@ jobs:
       uses: actions/checkout@v3
     - name: Test
       run: |
-        yarn install
-        yarn test
+        npm install
+        npm test

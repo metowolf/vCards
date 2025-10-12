@@ -25,8 +25,8 @@ jobs:
           echo "tag=$RELEASE_TAG" >> $GITHUB_OUTPUT
       - name: Build
         run: |
-          yarn install
-          yarn build
+          npm install
+          npm run build
       - name: Create Release
         id: create_release
         env:
@@ -79,11 +79,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'yarn'
+          cache: 'npm'
       - name: Install dependencies
-        run: yarn install
+        run: npm install
       - name: Build web
-        run: yarn build:web
+        run: npm run build:web
       - name: Deploy to pages branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
