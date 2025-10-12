@@ -1,0 +1,37 @@
+{
+  "name": "ignore-by-default",
+  "version": "2.1.0",
+  "description": "A list of directories you should ignore by default",
+  "engines": {
+    "node": ">=10 <11 || >=12 <13 || >=14"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "standard && node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/novemberborn/ignore-by-default.git"
+  },
+  "keywords": [
+    "ignore",
+    "chokidar",
+    "watcher",
+    "exclude",
+    "glob",
+    "pattern"
+  ],
+  "author": "Mark Wubben (https://novemberborn.net/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/novemberborn/ignore-by-default/issues"
+  },
+  "homepage": "https://github.com/novemberborn/ignore-by-default#readme",
+  "devDependencies": {
+    "figures": "^3.2.0",
+    "standard": "^14.3.4"
+  }
+}

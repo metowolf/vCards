@@ -1,0 +1,40 @@
+'use strict';
+
+var pathToFileURL = require('url').pathToFileURL;
+
+var importESM;
+try {
+  // Node.js <10 errors out with a SyntaxError when loading a script that uses import().
+  // So a function is dynamically created to catch the SyntaxError at runtime instead of parsetime.
+  // That way we can keep supporting all Node.js versions all the way back to 0.10.
+  importESM = new Function('id', 'return import(id);');
+} catch (e) {
+  /* istanbul ignore next */
+  importESM = null;
+}
+
+function requireOrImport(path, callback) {
+  var err = null;
+  var cjs;
+  try {
+    cjs = require(path);
+  } catch (e) {
+    /* istanbul ignore else */
+    if (pathToFileURL && importESM) {
+      // Because e.code is undefined on nyc process.
+      /* istanbul ignore else */
+      // Check 'ERR_REQUIRE_ASYNC_MODULE' if on node v22.12.0 or later to allow importing from files using top level await.
+      if (e.code === 'ERR_REQUIRE_ESM' || process.env.NYC_CONFIG || e.code === 'ERR_REQUIRE_ASYNC_MODULE') {
+        // This is needed on Windows, because import() fails if providing a Windows file path.
+        var url = pathToFileURL(path);
+        importESM(url).then(function(esm) { callback(null, esm); }, callback);
+        return;
+      }
+    }
+    /* istanbul ignore next */
+    err = e;
+  }
+  process.nextTick(function() { callback(err, cjs); });
+}
+
+module.exports = requireOrImport;

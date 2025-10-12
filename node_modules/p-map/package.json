@@ -1,0 +1,55 @@
+{
+	"name": "p-map",
+	"version": "5.5.0",
+	"description": "Map over promises concurrently",
+	"license": "MIT",
+	"repository": "sindresorhus/p-map",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": "./index.js",
+	"engines": {
+		"node": ">=12"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"promise",
+		"map",
+		"resolved",
+		"wait",
+		"collection",
+		"iterable",
+		"iterator",
+		"race",
+		"fulfilled",
+		"async",
+		"await",
+		"promises",
+		"concurrently",
+		"concurrency",
+		"parallel",
+		"bluebird"
+	],
+	"dependencies": {
+		"aggregate-error": "^4.0.0"
+	},
+	"devDependencies": {
+		"ava": "^4.1.0",
+		"delay": "^5.0.0",
+		"in-range": "^3.0.0",
+		"random-int": "^3.0.0",
+		"time-span": "^5.0.0",
+		"tsd": "^0.19.1",
+		"xo": "^0.48.0"
+	}
+}

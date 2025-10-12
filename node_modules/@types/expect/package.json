@@ -1,0 +1,28 @@
+{
+    "name": "@types/expect",
+    "version": "1.20.4",
+    "description": "TypeScript definitions for Expect",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Justin Reidy",
+            "url": "https://github.com/jmreidy",
+            "githubUsername": "jmreidy"
+        },
+        {
+            "name": "Risto Keravuori",
+            "url": "https://github.com/merrywhether",
+            "githubUsername": "merrywhether"
+        }
+    ],
+    "main": "",
+    "types": "index",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "d3231b148e302a9962250a5ddcf164513e9274916ae66951574429f9ea266228",
+    "typeScriptVersion": "2.0"
+}

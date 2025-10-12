@@ -1,0 +1,54 @@
+{
+	"name": "chunkd",
+	"version": "2.0.1",
+	"description": "Get a chunk of an array based on the total number of chunks and current index",
+	"main": "dist/chunkd.js",
+	"repository": "jamiebuilds/chunkd",
+	"author": "Jamie Kyle <me@thejameskyle.com>",
+	"license": "MIT",
+	"keywords": [
+		"util",
+		"chunk",
+		"index",
+		"total"
+	],
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"check:typescript": "tsc --noEmit",
+		"check:prettier": "prettier --check '**'",
+		"build": "rm -rf dist && tsc",
+		"format": "prettier --write '**'",
+		"test": "ava",
+		"prepublishOnly": "npm run -s build"
+	},
+	"devDependencies": {
+		"ava": "^2.4.0",
+		"husky": "^3.1.0",
+		"lint-staged": "^9.4.3",
+		"prettier": "^1.19.1",
+		"ts-node": "^8.5.2",
+		"typescript": "^3.7.2"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*": [
+			"prettier --write",
+			"git add"
+		]
+	},
+	"ava": {
+		"compileEnhancements": false,
+		"extensions": [
+			"ts"
+		],
+		"require": [
+			"ts-node/register"
+		]
+	}
+}

@@ -1,0 +1,33 @@
+{
+    "name": "@types/vinyl",
+    "version": "2.0.12",
+    "description": "TypeScript definitions for vinyl",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/vinyl",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "vvakame",
+            "githubUsername": "vvakame",
+            "url": "https://github.com/vvakame"
+        },
+        {
+            "name": "Georgii Dolzhykov",
+            "githubUsername": "thorn0",
+            "url": "https://github.com/thorn0"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/vinyl"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/expect": "^1.20.4",
+        "@types/node": "*"
+    },
+    "typesPublisherContentHash": "4d39b9b6291737b70ec3a41a7694f553a8d2e64884d13991c65b63b3e8375f65",
+    "typeScriptVersion": "4.7"
+}

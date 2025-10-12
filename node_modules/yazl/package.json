@@ -1,0 +1,34 @@
+{
+  "name": "yazl",
+  "version": "3.3.1",
+  "description": "yet another zip library for node",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thejoshwolfe/yazl.git"
+  },
+  "keywords": [
+    "zip",
+    "stream",
+    "archive",
+    "file"
+  ],
+  "author": "Josh Wolfe <thejoshwolfe@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thejoshwolfe/yazl/issues"
+  },
+  "homepage": "https://github.com/thejoshwolfe/yazl",
+  "dependencies": {
+    "buffer-crc32": "^1.0.0"
+  },
+  "devDependencies": {
+    "yauzl": "^3.2.0"
+  },
+  "files": [
+    "index.js"
+  ]
+}

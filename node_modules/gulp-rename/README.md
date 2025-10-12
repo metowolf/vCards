@@ -1,0 +1,70 @@
+# gulp-rename
+
+gulp-rename is a [gulp](https://github.com/wearefractal/gulp) plugin to rename files easily.
+
+[![NPM](https://nodei.co/npm/gulp-rename.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gulp-rename/)
+
+[![CI](https://github.com/hparra/gulp-rename/actions/workflows/ci.yml/badge.svg?branch=master)](http://travis-ci.org/hparra/gulp-rename)
+[![NPM VERSION](https://img.shields.io/npm/v/gulp-rename.svg?sanitize=true)](https://www.npmjs.com/package/gulp-rename)
+
+## Usage
+
+gulp-rename provides simple file renaming methods.
+
+```javascript
+var rename = require("gulp-rename");
+
+// rename to a fixed value
+gulp.src("./src/main/text/hello.txt")
+  .pipe(rename("main/text/ciao/goodbye.md"))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/goodbye.md
+
+// rename via mutating function
+gulp.src("./src/**/hello.txt")
+  .pipe(rename(function (path) {
+    // Updates the object in-place
+    path.dirname += "/ciao";
+    path.basename += "-goodbye";
+    path.extname = ".md";
+  }))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
+
+// rename via a map function
+gulp.src("./src/**/hello.txt")
+  .pipe(rename(function (path) {
+    // Returns a completely new object, make sure you return all keys needed!
+    return {
+      dirname: path.dirname + "/ciao",
+      basename: path.basename + "-goodbye",
+      extname: ".md"
+    };
+  }))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
+
+// rename via a fixed object
+gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
+  .pipe(rename({
+    dirname: "main/text/ciao",
+    basename: "aloha",
+    prefix: "bonjour-",
+    suffix: "-hola",
+    extname: ".md"
+  }))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/bonjour-aloha-hola.md
+```
+
+**See [test/rename.spec.js](test/rename.spec.js) for more examples and [test/path-parsing.spec.js](test/path-parsing.spec.js) for hairy details.**
+
+## Notes
+
+* `dirname` is the relative path from the base directory set by `gulp.src` to the filename.
+  * `gulp.src()` uses glob-stream which sets the base to the parent of the first directory glob (`*`, `**`, [], or extglob). `dirname` is the remaining directories or `./` if none. glob-stream versions >= 3.1.0 (used by gulp >= 3.2.2) accept a `base` option, which can be used to explicitly set the base.
+  * `gulp.dest()` renames the directories between `process.cwd()` and `dirname` (i.e. the base relative to CWD). Use `dirname` to rename the directories matched by the glob or descendents of the base of option.
+* `basename` is the filename without the extension like `path.basename(filename, path.extname(filename))`.
+* `extname` is the file extension including the `.` like `path.extname(filename)`.
+* when using a function, a second `file` argument is provided with the whole context and original file value.
+* when using a function, if no `Object` is returned then the passed parameter object (along with any modifications) is re-used.
+
+## License
+
+[MIT License](http://en.wikipedia.org/wiki/MIT_License)

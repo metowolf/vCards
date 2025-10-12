@@ -1,0 +1,53 @@
+{
+	"name": "gulp-plugin-extras",
+	"version": "1.1.0",
+	"description": "Useful utilities for creating Gulp plugins",
+	"license": "MIT",
+	"repository": "sindresorhus/gulp-plugin-extras",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "https://sindresorhus.com"
+	},
+	"type": "module",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=18"
+	},
+	"scripts": {
+		"test": "xo && ava && tsc index.d.ts"
+	},
+	"files": [
+		"index.js",
+		"index.d.ts",
+		"plugin-error.js"
+	],
+	"keywords": [
+		"gulp",
+		"plugin",
+		"extras",
+		"utilities"
+	],
+	"dependencies": {
+		"@types/vinyl": "^2.0.12",
+		"chalk": "^5.3.0",
+		"easy-transform-stream": "^1.0.1"
+	},
+	"devDependencies": {
+		"ava": "^6.1.2",
+		"p-event": "^6.0.1",
+		"typescript": "^5.4.5",
+		"vinyl": "^3.0.0",
+		"xo": "^0.58.0"
+	},
+	"xo": {
+		"rules": {
+			"@typescript-eslint/no-require-imports": "off"
+		}
+	}
+}

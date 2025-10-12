@@ -1,0 +1,49 @@
+{
+  "name": "well-known-symbols",
+  "version": "2.0.0",
+  "description": "Check whether a symbol is well-known",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "lint": "as-i-preach",
+    "test": "npm -s run lint && nyc ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/novemberborn/well-known-symbols.git"
+  },
+  "keywords": [
+    "symbols",
+    "es6",
+    "es7",
+    "es8",
+    "es2015",
+    "es2016",
+    "es2017"
+  ],
+  "author": "Mark Wubben (https://novemberborn.net/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/novemberborn/well-known-symbols/issues"
+  },
+  "homepage": "https://github.com/novemberborn/well-known-symbols#readme",
+  "devDependencies": {
+    "@novemberborn/as-i-preach": "^11.0.0",
+    "ava": "1.0.0-beta.8",
+    "codecov": "^3.1.0",
+    "nyc": "^13.0.1"
+  },
+  "nyc": {
+    "reporter": [
+      "html",
+      "lcov",
+      "text"
+    ]
+  },
+  "standard-engine": "@novemberborn/as-i-preach"
+}
