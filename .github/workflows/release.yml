@@ -47,31 +47,53 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Build image and push
-        env:
-          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOCKER_USERNAME: ${{ github.actor }}
-          GITHUB_USERNAME: ${{ github.actor }}
+      - name: Set environment variables
         run: |
-          # 使用 release 的标签作为 Docker 版本号
           IMAGE_VERSION="${{ needs.release-build.outputs.release_tag }}"
+          GITHUB_USER="${{ github.repository_owner }}"
+          DOCKER_USER="${{ github.repository_owner }}"
+          echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
+          echo "GITHUB_USER=${GITHUB_USER,,}" >> $GITHUB_ENV
+          echo "DOCKER_USER=${DOCKER_USER,,}" >> $GITHUB_ENV
           echo "Using release tag as Docker version: $IMAGE_VERSION"
-
-          echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
-          docker build -t $DOCKER_USERNAME/vcards:$IMAGE_VERSION .
-          docker tag $DOCKER_USERNAME/vcards:$IMAGE_VERSION $DOCKER_USERNAME/vcards:latest
-          docker push $DOCKER_USERNAME/vcards:$IMAGE_VERSION
-          docker push $DOCKER_USERNAME/vcards:latest
-
-          echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
-          docker build -t ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION .
-          docker tag ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION ghcr.io/$GITHUB_USERNAME/vcards:latest
-          docker push ghcr.io/$GITHUB_USERNAME/vcards:$IMAGE_VERSION
-          docker push ghcr.io/$GITHUB_USERNAME/vcards:latest
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up docker buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ env.GITHUB_USER }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          context: .
+          platforms: |
+            linux/amd64
+            linux/arm64/v8
+          tags: |
+            ghcr.io/${{ env.GITHUB_USER }}/vcards:latest
+            ghcr.io/${{ env.GITHUB_USER }}/vcards:${{ env.IMAGE_VERSION }}
+            ${{ env.DOCKER_USER }}/vcards:latest
+            ${{ env.DOCKER_USER }}/vcards:${{ env.IMAGE_VERSION }}
   
   web-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -84,29 +106,12 @@ jobs:
         run: npm install
       - name: Build web
         run: npm run build:web
-      - name: Deploy to pages branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          
-          # 删除原有的 pages 分支（如果存在）
-          git push origin --delete pages 2>/dev/null || true
-          
-          # 创建全新的 orphan 分支（无历史记录）
-          git checkout --orphan pages
-          
-          # 清空工作目录
-          git rm -rf . 2>/dev/null || true
-          
-          # 将 public-web 目录的内容移动到根目录
-          mv public-web/* ./
-          rmdir public-web
-          
-          # 添加所有文件并创建唯一的 commit
-          git add .
-          git commit -m "Deploy web build $(date +'%Y-%m-%d %H:%M:%S')"
-          
-          # 强制推送，创建全新的 pages 分支
-          git push origin pages --force
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public-web
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
