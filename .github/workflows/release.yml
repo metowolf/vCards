@@ -84,34 +84,3 @@ jobs:
             ghcr.io/${{ env.GITHUB_USER }}/vcards:${{ env.IMAGE_VERSION }}
             ${{ env.DOCKER_USER }}/vcards:latest
             ${{ env.DOCKER_USER }}/vcards:${{ env.IMAGE_VERSION }}
-  
-  web-build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm install
-      - name: Build web
-        run: npm run build:web
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public-web
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
