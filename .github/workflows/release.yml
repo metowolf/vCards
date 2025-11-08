@@ -81,6 +81,8 @@ jobs:
             linux/arm64/v8
           tags: |
             ghcr.io/${{ env.GITHUB_USER }}/vcards:latest
+            ghcr.io/${{ env.GITHUB_USER }}/vcards:stable
             ghcr.io/${{ env.GITHUB_USER }}/vcards:${{ env.IMAGE_VERSION }}
             ${{ env.DOCKER_USER }}/vcards:latest
+            ${{ env.DOCKER_USER }}/vcards:stable
             ${{ env.DOCKER_USER }}/vcards:${{ env.IMAGE_VERSION }}
