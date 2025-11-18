@@ -6,6 +6,7 @@ on:
     paths:
     - "data/**"
     - ".github/**"
+    - "Dockerfile"
     - "package.json"
   workflow_dispatch:
 
@@ -40,3 +41,48 @@ jobs:
           keep_latest: 5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: release-build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set environment variables
+        run: |
+          IMAGE_VERSION="${{ needs.release-build.outputs.release_tag }}"
+          GITHUB_USER="${{ github.repository_owner }}"
+          DOCKER_USER="${{ github.repository_owner }}"
+          echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
+          echo "GITHUB_USER=${GITHUB_USER,,}" >> $GITHUB_ENV
+          echo "DOCKER_USER=${DOCKER_USER,,}" >> $GITHUB_ENV
+          echo "Using release tag as Docker version: $IMAGE_VERSION"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up docker buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ env.GITHUB_USER }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          context: .
+          platforms: |
+            linux/amd64
+            linux/arm64/v8
+          tags: |
+            ghcr.io/${{ env.GITHUB_USER }}/vcards:latest
+            ghcr.io/${{ env.GITHUB_USER }}/vcards:stable
+            ghcr.io/${{ env.GITHUB_USER }}/vcards:${{ env.IMAGE_VERSION }}
+            ${{ env.DOCKER_USER }}/vcards:latest
+            ${{ env.DOCKER_USER }}/vcards:stable
+            ${{ env.DOCKER_USER }}/vcards:${{ env.IMAGE_VERSION }}
