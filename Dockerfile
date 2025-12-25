@@ -8,7 +8,7 @@ RUN npm install && npm run radicale
 FROM alpine:edge
 
 RUN apk add --no-cache \
-    radicale \
+    radicale py3-six\
   && rm -rf /var/cache/apk/* \
   \
   && { \
