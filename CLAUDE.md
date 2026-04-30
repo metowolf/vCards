@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `data/` - 按分类存储的 YAML 数据文件和对应的 PNG 图标
   - 每个条目包含一个 `.yaml` 配置文件和一个 `.png` 图标文件
   - YAML 文件包含 `basic` 对象，包含 `organization`、`cellPhone`、`url`、`workEmail` 等字段
-  - 图标必须是 200x200px 的 PNG 格式，文件大小不超过 20KB
+  - 图标支持两种规格：200x200px（≤20KB）或 512x512px（≤50KB）的 PNG 格式
 
 ### 构建系统
 - 使用 Gulp 作为构建工具，配置文件在 `src/gulpfile.js`
@@ -88,7 +88,7 @@ npm run gulp buildWeb
 - 支持中国区号格式和国际格式
 
 ### 测试规范
-- 图标必须是合法的 PNG 格式（200x200px，<20KB）
+- 图标必须是合法的 PNG 格式（200x200px ≤20KB 或 512x512px ≤50KB）
 - YAML 数据必须符合定义的 schema
 - 检查阻止列表（`src/const/block.js`）中的机构
 

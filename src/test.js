@@ -18,11 +18,18 @@ const checkImage = (t, path) => {
     t.fail('图片格式不合法')
   }
   const dimensions = imageSize(path)
-  if (dimensions.width !== 200 || dimensions.height !== 200) {
-    t.fail(`图片尺寸不合法 ${dimensions.width}x${dimensions.height}`)
-  }
   const lstat = fs.lstatSync(path)
-  if (lstat.size > 1024 * 20) {
+
+  // 支持两种规格：200x200px/20KB 或 512x512px/50KB
+  const is200 = dimensions.width === 200 && dimensions.height === 200
+  const is512 = dimensions.width === 512 && dimensions.height === 512
+
+  if (!is200 && !is512) {
+    t.fail(`图片尺寸不合法 ${dimensions.width}x${dimensions.height}，需要 200x200 或 512x512`)
+  }
+
+  const sizeLimit = is512 ? 1024 * 50 : 1024 * 20
+  if (lstat.size > sizeLimit) {
     t.fail(`图片文件体积超过限制 ${prettyBytes(lstat.size)}`)
   }
   t.pass()
