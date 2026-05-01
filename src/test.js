@@ -54,6 +54,32 @@ const checkVCard = (t, path) => {
   t.pass()
 }
 
+test('Validation/no-duplicate-phones', async t => {
+  const paths = await globby('data/*/*.yaml')
+  const phoneMap = new Map()
+  const duplicates = []
+
+  for (const path of paths) {
+    const data = fs.readFileSync(path, 'utf8')
+    const json = yaml.load(data)
+    const phones = json?.basic?.cellPhone ?? []
+
+    for (const phone of phones) {
+      const normalized = String(phone).replace(/\D/g, '')
+      if (phoneMap.has(normalized)) {
+        duplicates.push(`${normalized}: ${phoneMap.get(normalized)} 和 ${path}`)
+      } else {
+        phoneMap.set(normalized, path)
+      }
+    }
+  }
+
+  if (duplicates.length > 0) {
+    console.warn(`发现重复电话号码:\n${duplicates.join('\n')}`)
+  }
+  t.pass()
+})
+
 const app = async () => {
   const paths = await globby('data/*/*.yaml')
   for (const path of paths) {
