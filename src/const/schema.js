@@ -24,7 +24,19 @@ const schema = Joi.object({
         }
         return value
       }),
-      Joi.number()
+      Joi.number(),
+      Joi.object({
+        number: Joi.alternatives().try(
+          Joi.string().custom((value, helper) => {
+            if (!checkPhone(value)) {
+              return helper.message("phone is incorrect")
+            }
+            return value
+          }),
+          Joi.number()
+        ).required(),
+        label: Joi.string().required()
+      })
     ).required(),
     url: Joi.string().uri().optional(),
     workEmail: Joi.array().items(Joi.string().email()).optional()

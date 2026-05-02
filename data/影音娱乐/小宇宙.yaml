@@ -1,5 +1,6 @@
 basic:
   organization: 小宇宙
   cellPhone:
-    - 0574-88382026 # 即刻
+    - number: 0574-88382026
+      label: 即刻
   url: https://www.xiaoyuzhoufm.com/
