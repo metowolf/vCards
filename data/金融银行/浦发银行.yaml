@@ -2,4 +2,8 @@ basic:
   organization: 浦发银行
   cellPhone:
     - 95528
+    - number: 4001095528
+      label: 信用卡客服热线
+    - number: 4008889883
+      label: 信用卡客服热线
   url: https://www.spdb.com.cn/

@@ -4,4 +4,8 @@ basic:
     - 95508
     - 020-95508
     - 4008308003
+    - number: 4001195508
+      label: 信用卡客服热线
+    - number: 4006295508
+      label: 信用卡客服热线
   url: https://www.cgbchina.com.cn/

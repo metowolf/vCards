@@ -2,4 +2,6 @@ basic:
   organization: 长沙银行
   cellPhone:
     - 96511
+    - number: 4006796511
+      label: 信用卡服务热线
   url: https://www.bankofchangsha.com/

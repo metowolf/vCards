@@ -6,5 +6,7 @@ basic:
       label: 信用卡外呼
     - number: 952568
       label: 信用卡外呼
+    - number: 4006695568
+      label: 信用卡客服热线
   url: https://www.cmbc.com.cn/
   
