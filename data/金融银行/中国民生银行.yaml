@@ -8,5 +8,11 @@ basic:
       label: 信用卡外呼
     - number: 4006695568
       label: 信用卡客服热线
+    - number: 106908795568
+      label: 信用卡短信
+    - number: 1069079895568
+      label: 信用卡短信
+    - number: 1069196995568
+      label: 信用卡短信
   url: https://www.cmbc.com.cn/
   

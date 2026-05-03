@@ -82,7 +82,8 @@ test('Validation/no-duplicate-phones', t => {
     const phones = json?.basic?.cellPhone ?? []
 
     for (const phone of phones) {
-      const normalized = String(phone).replace(/\D/g, '')
+      const phoneStr = typeof phone === 'object' ? phone.number : phone
+      const normalized = String(phoneStr).replace(/\D/g, '')
       if (phoneMap.has(normalized)) {
         duplicates.push(`${normalized}: ${phoneMap.get(normalized)} 和 ${filePath}`)
       } else {
