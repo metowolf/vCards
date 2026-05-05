@@ -3,4 +3,6 @@ basic:
   cellPhone:
     - 95366
     - 400-800-4818
+  workEmail:
+    - enotice@mail.hsbc.com.cn
   url: https://www.hsbc.com.cn

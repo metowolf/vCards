@@ -2,4 +2,7 @@ basic:
   organization: 携程
   cellPhone:
     - 95010
+  workEmail:
+    - ia_rsv@trip.com
+    - Trip.com@newsletter.trip.com
   url: https://www.ctrip.com/

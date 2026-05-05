@@ -2,4 +2,6 @@ basic:
   organization: 众安银行
   cellPhone:
     - +852 36653665
+  workEmail:
+    - notification@service.bank.za.group
   url: https://bank.za.group/

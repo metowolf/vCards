@@ -2,4 +2,6 @@ basic:
   organization: Google
   cellPhone:
     - 6502530000
+  workEmail:
+    - no-reply@accounts.google.com
   url: https://www.google.com/

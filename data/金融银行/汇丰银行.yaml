@@ -4,4 +4,6 @@ basic:
     - +852 22333000
     - +852 22333322
     - +852 22333033
+  workEmail:
+    - HSBC_CNP@notification.hsbc.com.hk
   url: https://www.hsbc.com.hk
