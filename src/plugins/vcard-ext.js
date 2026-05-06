@@ -21,6 +21,18 @@ const plugin = (file, _, cb) => {
   }
   json.basic.cellPhone = plainPhones
 
+  // 分离带标签和不带标签的邮箱
+  const labeledEmails = []
+  const plainEmails = []
+  for (const email of (json.basic.workEmail || [])) {
+    if (typeof email === 'object' && email !== null && email.email !== undefined) {
+      labeledEmails.push(email)
+    } else {
+      plainEmails.push(email)
+    }
+  }
+  json.basic.workEmail = plainEmails
+
   let vCard = vCardsJS()
   vCard.isOrganization = true
   for (const [key, value] of Object.entries(json.basic)) {
@@ -48,6 +60,19 @@ const plugin = (file, _, cb) => {
       const idx = i + 1
       labeledEntries += `item${idx}.TEL;TYPE=CELL:${phone.number}\r\n`
       labeledEntries += `item${idx}.X-ABLabel:${phone.label}\r\n`
+    })
+    formatted = formatted.replace('END:VCARD', labeledEntries + 'END:VCARD')
+  }
+
+  // 添加带标签的邮箱
+  if (labeledEmails.length > 0) {
+    let labeledEntries = ''
+    labeledEmails.forEach((email, i) => {
+      const idx = i + 1
+      labeledEntries += `item${idx}.EMAIL;TYPE=WORK:${email.email}
+`
+      labeledEntries += `item${idx}.X-ABLabel:${email.label}
+`
     })
     formatted = formatted.replace('END:VCARD', labeledEntries + 'END:VCARD')
   }
