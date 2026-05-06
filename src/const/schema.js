@@ -39,7 +39,13 @@ const schema = Joi.object({
       })
     ).required(),
     url: Joi.string().uri().optional(),
-    workEmail: Joi.array().items(Joi.string().email()).optional()
+    workEmail: Joi.array().items(
+      Joi.string().email(),
+      Joi.object({
+        email: Joi.string().email().required(),
+        label: Joi.string().required()
+      })
+    ).optional()
   }).required()
 })
 

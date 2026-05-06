@@ -6,5 +6,8 @@ basic:
     - 400-619-8141
     - 02161791000
   workEmail:
-    - noreply@email.apple.com
+    - email: noreply@email.apple.com
+      label: 通知
+    - email: no_reply@email.apple.com
+      label: 通知
   url: https://www.apple.com.cn/

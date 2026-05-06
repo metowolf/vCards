@@ -1,10 +1,15 @@
 basic:
   organization: 比亚迪
   cellPhone:
-    - 4008-303-666
-    - 4001-666-016
-    - 0755-89888888
+    - number: 950858
+      label: 售前售后
+    - number: 4001-666-016
+      label: 客户回访
+    - number: 0755-89888888
+      label: 公司总机
   url: https://www.byd.com/cn/contact-us
   workEmail:
-    - shouhoufuwu@byd.com
-    - cve.auto@byd.com
+    - email: shouhoufuwu@byd.com
+      label: 售后服务
+    - email: cve.auto@byd.com
+      label: 网络安全

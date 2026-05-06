@@ -3,5 +3,12 @@ basic:
   cellPhone:
     - "+1 877-448-4824"
   workEmail:
-    - notifications@github.com
+    - email: support@github.com
+      label: 支持
+    - email: notifications@github.com
+      label: 通知
+    - email: noreply@github.com
+      label: 通知
+    - email: no-reply@github.com
+      label: 通知
   url: https://github.com/
