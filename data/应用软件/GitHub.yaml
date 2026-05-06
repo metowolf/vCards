@@ -4,4 +4,5 @@ basic:
     - "+1 877-448-4824"
   workEmail:
     - notifications@github.com
+    - noreply@github.com
   url: https://github.com/
