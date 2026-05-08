@@ -37,7 +37,7 @@ const schema = Joi.object({
         ).required(),
         label: Joi.string().required()
       })
-    ).required(),
+    ).optional(),
     url: Joi.string().uri().optional(),
     workEmail: Joi.array().items(
       Joi.string().email(),
@@ -46,7 +46,14 @@ const schema = Joi.object({
         label: Joi.string().required()
       })
     ).optional()
-  }).required()
+  }).required().custom((value, helpers) => {
+    const hasPhone = Array.isArray(value.cellPhone) && value.cellPhone.length > 0
+    const hasEmail = Array.isArray(value.workEmail) && value.workEmail.length > 0
+    if (!hasPhone && !hasEmail) {
+      return helpers.error('any.invalid', { message: 'cellPhone or workEmail is required' })
+    }
+    return value
+  })
 })
 
 export default schema
