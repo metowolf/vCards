@@ -1,0 +1,6 @@
+basic:
+  organization: Steam
+  workEmail:
+    - email: noreply@steampowered.com
+      label: 通知
+  url: https://steampowered.com
