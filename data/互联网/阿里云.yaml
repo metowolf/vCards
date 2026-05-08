@@ -2,4 +2,9 @@ basic:
   organization: 阿里云
   cellPhone:
     - 95187
+  workEmail:
+    - email: system@notice.aliyun.com
+      label: 系统通知
+    - email: monitor@monitor.aliyun.com
+      label: 监控通知
   url: https://www.aliyun.com/
