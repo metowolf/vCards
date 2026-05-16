@@ -1,0 +1,10 @@
+basic:
+  organization: 拓竹
+  cellPhone:
+    - 400-680-0166
+  workEmail:
+    - email: contact@bambulab.com
+      label: 反馈
+    - email: hr@bambulab.com
+      label: 招聘
+  url: https://bambulab.cn
