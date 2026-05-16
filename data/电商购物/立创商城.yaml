@@ -2,4 +2,9 @@ basic:
   organization: 立创商城
   cellPhone:
     - 0755-83865666
+  workMail:
+    - email: aservice@szlcsc.com
+      label: 通知
+    - email: ic@szlcsc.com
+      label: 支持
   url: https://www.szlcsc.com
