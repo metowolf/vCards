@@ -1,7 +1,8 @@
 basic:
   organization: Oracle
   cellPhone:
-    - 400-699-8800
+    - +1-800-633-0738
+    - 400-699-8888
   workEmail:
     - email: no-reply@identity.oci.oraclecloud.com
       label: 通知
