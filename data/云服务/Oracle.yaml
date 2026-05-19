@@ -1,0 +1,8 @@
+basic:
+  organization: Oracle
+  cellPhone:
+    - 400-699-8800
+  workEmail:
+    - email: no-reply@identity.oci.oraclecloud.com
+      label: 通知
+  url: https://www.oracle.com/cn/
