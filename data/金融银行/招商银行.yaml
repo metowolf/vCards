@@ -2,13 +2,23 @@ basic:
   organization: 招商银行
   cellPhone:
     - 95555
-    - 4008885555
-    - 4008205555
+    - number: 4008885555
+      label: 白金贵宾专线
+    - number: 4008205555
+      label: 信用卡服务热线
     - 1065795555
     - 021-38784800
     - 021-68674800
     - number: 4008895555
       label: 金葵花专线
+    - number: 4008205558
+      label: 商务卡专线
+    - number: 4009889888
+      label: 黑金贵宾专线
+    - number: 4008000888
+      label: 无限贵宾专线
+    - number: 4008095555
+      label: 运通白金贵宾专线
   workEmail:
     - ccsvcad@message.cmbchina.com
     - ccsvc@message.cmbchina.com
