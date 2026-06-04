@@ -1,0 +1,8 @@
+basic:
+  organization: 中国建设银行（亚洲）
+  cellPhone:
+    - number: +852 27795533
+      label: 香港
+    - number: 400-199-5533
+      label: 内地
+  url: https://www.asia.ccb.com/
