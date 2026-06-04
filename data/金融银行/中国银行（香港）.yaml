@@ -2,4 +2,8 @@ basic:
   organization: 中国银行（香港）
   cellPhone:
     - +852 39882388
+    - number: 400-800-2388
+      label: 内地客户服务热线
+    - number: +852 39882222
+      label: 香港以外地区客户服务热线
   url: https://www.bochk.com/tc/home.html/
