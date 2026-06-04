@@ -2,5 +2,7 @@ basic:
   organization: 兴业银行
   cellPhone:
     - 95561
-    - 4008895561
+    - 021-95561
+    - number: 4008895561
+      label: 贵宾专线
   url: https://www.cib.com.cn/
