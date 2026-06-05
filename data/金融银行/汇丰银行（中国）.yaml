@@ -2,7 +2,14 @@ basic:
   organization: 汇丰银行（中国）
   cellPhone:
     - 95366
-    - 400-800-4818
+    - number: 400-820-8828
+      label: 卓越理财客户服务热线
+    - number: 400-820-8878
+      label: 卓越理财客户服务热线
+    - number: 400-820-1818
+      label: 个人银行账户客户服务热线
+    - number: 400-920-3827
+      label: 大湾区服务热线
   workEmail:
     - enotice@mail.hsbc.com.cn
   url: https://www.hsbc.com.cn

@@ -1,7 +1,11 @@
 basic:
   organization: 滴滴出行
   cellPhone:
-    - 4000000999
-    - 4000000666
-    - 4007666998
+    - 95066
+    - number: 4000000999
+      label: 乘客客服热线
+    - number: 4000000666
+      label: 司机客服热线
+    - number: 4000111666
+      label: 代驾客服热线
   url: https://www.didiglobal.com/

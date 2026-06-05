@@ -6,4 +6,6 @@ basic:
       label: 信用卡客服热线
     - number: 4008889883
       label: 信用卡客服热线
+    - number: 4008880288
+      label: 信用卡白金热线
   url: https://www.spdb.com.cn/

@@ -1,11 +1,25 @@
 basic:
   organization: 广发银行
   cellPhone:
-    - 95508
+    - number: 95508
+      label: 信用卡专线
     - 020-95508
-    - 4008308003
+    - number: 4008308003
+      label: 客服热线
+    - number: 4008295508
+      label: 贵宾专线
     - number: 4001195508
-      label: 信用卡客服热线
+      label: 信用卡外呼电话
+    - number: 4001695508
+      label: 信用卡外呼电话
+    - number: 4001895508
+      label: 信用卡外呼电话
+    - number: 4008395508
+      label: 信用卡外呼电话
+    - number: 4008495508
+      label: 信用卡外呼电话
     - number: 4006295508
-      label: 信用卡客服热线
+      label: 信用卡外呼电话
+    - number: 4006395508
+      label: 信用卡外呼电话
   url: https://www.cgbchina.com.cn/

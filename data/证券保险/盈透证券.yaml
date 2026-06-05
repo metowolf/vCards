@@ -1,6 +1,12 @@
 basic:
   organization: 盈透证券
   cellPhone:
-    - 021-60868586
-    - +852 31078333
-  url: https://www.interactivebrokers.com.cn/
+    - number: +1-877-442-2757
+      label: 美国免费热线
+    - number: +1-312-542-6901
+      label: 美国直拨
+    - number: 021-60868586
+      label: 中国
+    - number: +852 31078333
+      label: 香港
+  url: https://www.interactivebrokers.com/
