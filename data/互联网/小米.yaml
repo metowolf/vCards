@@ -6,3 +6,5 @@ basic:
     - 4001005678
     - 950816
   url: https://www.mi.com/
+  workEmail:
+    - noreply@m.xiaomi.com
