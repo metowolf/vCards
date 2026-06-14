@@ -15,3 +15,5 @@ basic:
     - number: 4008895599
       label: 私人银行客服专线
   url: https://www.abchina.com/cn/
+  workEmail:
+    - e-statement@creditcard.abchina.com.cn
