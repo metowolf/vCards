@@ -3,7 +3,8 @@ basic:
   cellPhone:
     - 10010
     - 10011
-    - 10016
+    - number: 10016
+      label: 营销专线
     - 10018
     - number: 101906
       label: 沃助理
