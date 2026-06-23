@@ -4,4 +4,6 @@ basic:
     - 95118
     - 950618
     - 4006562211
+  workEmail:
+    - customer_service@jd.com
   url: https://www.jd.com/
