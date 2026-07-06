@@ -3,4 +3,6 @@ basic:
   cellPhone:
     - 12381
     - 12300
+    - number: 10699000
+      label: 反诈中心
   url: https://www.miit.gov.cn/

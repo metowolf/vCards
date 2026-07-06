@@ -14,4 +14,6 @@ basic:
     - 10659210000
     - number: "+853 1888"
       label: 澳门
+    - number: 10001688
+      label: 积分商城
   url: https://www.189.cn/
