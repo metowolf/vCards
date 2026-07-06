@@ -6,4 +6,9 @@ basic:
       label: 内地客户服务热线
     - number: +852 39882222
       label: 香港以外地区客户服务热线
+  workEmail:
+    - its_boc@bochk.com
+    - its_info@bochk.com
+    - e-statement@bochk.com
+    - ealert@bochk.com
   url: https://www.bochk.com/tc/home.html/
