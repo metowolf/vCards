@@ -9,4 +9,8 @@ basic:
       label: 中国
     - number: +852 31078333
       label: 香港
+  workEmail:
+    - donotreply@interactivebrokers.com
+    - donotreply@email.interactivebrokers.com
+    - noresponse@interactivebrokers-email.com
   url: https://www.interactivebrokers.com/
