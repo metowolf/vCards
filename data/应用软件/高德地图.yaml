@@ -3,4 +3,6 @@ basic:
   cellPhone:
     - 400-810-0080
     - 4008802252
+  workEmail:
+    - itinerary@ridesharing.amap.com
   url: https://www.amap.com/
