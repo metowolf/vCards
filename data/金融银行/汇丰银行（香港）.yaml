@@ -12,6 +12,7 @@ basic:
   workEmail:
     - HSBC_CNP@notification.hsbc.com.hk
     - HSBC@notification.hsbc.com.hk
+    - HSBC.estatement.and.eadvice@notification.hsbc.com.hk
     - onlineservicesnotification@hsbc.com.hk
     - estatement.and.eadvice@informationservices.hsbc.com.hk
   url: https://www.hsbc.com.hk
