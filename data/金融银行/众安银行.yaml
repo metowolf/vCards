@@ -4,4 +4,6 @@ basic:
     - +852 36653665
   workEmail:
     - notification@service.bank.za.group
+    - notice@mail.bank.za.group
+    - bank.update@mail.za.group
   url: https://bank.za.group/
