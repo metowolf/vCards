@@ -1,7 +1,28 @@
 basic:
   organization: 中信银行（国际）
   cellPhone:
-    - +852 22876767
+    - number: +852 22876767
+      label: 客户服务热线
+    - number: +852 22801288
+      label: 信用卡客户服务
+    - number: +852 22801888
+      label: 白金信用卡客户热线
+    - number: +852 22801800
+      label: 多币借记卡客户热线
+    - number: +852 36033333
+      label: CITICfirst 财富管理服务
+    - number: +852 22876766
+      label: CITICdiamond 财富管理服务
+    - number: +852 36036088
+      label: 私人银行服务
+    - number: +852 22801880
+      label: 私人银行卡24小时电话服务
+    - number: +852 22876868
+      label: 商务银行服务
+    - number: +852 36037899
+      label: 报失信用卡
+    - number: +852 22876088
+      label: 证券买卖专线
     - number: 400-842-5558
       label: 免费跨境理财服务专线
   workEmail:
