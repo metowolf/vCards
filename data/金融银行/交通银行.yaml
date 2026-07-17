@@ -3,7 +3,7 @@ basic:
   cellPhone:
     - 95559
     - number: 4008009888
-      label: 客服热线
+      label: 客服热线、征信异议受理热线
     - number: +86-21-28283888
       label: 境外热线
     - number: 4008666888
@@ -14,8 +14,6 @@ basic:
       label: 联名信用卡专线
     - number: 4008890058
       label: 单位公务卡专线
-    - number: 4008009888
-      label: 征信异议受理热线
     - number: 4008095559
       label: 外呼营销号码
   workEmail:
