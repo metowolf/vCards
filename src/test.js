@@ -92,10 +92,11 @@ test('Validation/no-duplicate-phones', t => {
     }
   }
 
-  if (duplicates.length > 0) {
-    console.warn(`发现重复电话号码:\n${duplicates.join('\n')}`)
-  }
-  t.pass()
+  t.is(
+    duplicates.length,
+    0,
+    `发现重复电话号码:\n${duplicates.join('\n')}`
+  )
 })
 
 for (const filePath of yamlPaths) {
