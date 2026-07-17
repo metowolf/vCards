@@ -2,9 +2,7 @@ basic:
   organization: 汇丰银行（香港）
   cellPhone:
     - number: +852 22333033
-      label: 环球私人银行客户
-    - number: +852 22333033
-      label: 卓越理财尊尚客户
+      label: 环球私人银行客户、卓越理财尊尚客户
     - number: +852 22333322
       label: 卓越理财客户
     - number: +852 22333000
