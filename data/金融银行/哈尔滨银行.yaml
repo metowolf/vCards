@@ -3,4 +3,11 @@ basic:
   cellPhone:
     - 95537
     - 4006095537
+    - number: 4006695537
+      label: 信用卡中心
+  workEmail:
+    - email: statement@creditcard.hrbb.com.cn
+      label: 信用卡中心
+    - email: 95537@hrbb.com.cn
+      label: 投诉、信访举报
   url: https://www.hrbb.com.cn/

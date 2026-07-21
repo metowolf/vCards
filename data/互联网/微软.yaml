@@ -3,3 +3,7 @@ basic:
   cellPhone:
     - 4008203800
   url: https://www.microsoft.com/
+  workEmail:
+    - noreply@accountprotection.microsoft.com
+    - microsoft-noreply@microsoft.com
+    - MicrosoftRewards@emailnotify.microsoft.com
