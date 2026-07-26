@@ -10,4 +10,12 @@ basic:
       label: 通知
     - email: no_reply@email.apple.com
       label: 通知
+    - email: do_not_reply@email.apple.com
+      label: 通知
+    - email: no_reply@icloud.gzdata.com.cn
+      label: 云上贵州
+    - email: betaprogram@insideapple.apple.com
+      label: Apple Beta 版软件计划
+    - email: MarketResearch@insideapple.apple.com
+      label: Apple调研反馈
   url: https://www.apple.com.cn/
