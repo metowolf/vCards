@@ -4,6 +4,19 @@ import vCardsJS from 'vcards-js'
 import {execSync} from 'child_process'
 import addPhoneticField from '../utils/pinyin.js'
 
+const getLastChangeDate = (filePath) => {
+  try {
+    const gitDate = execSync(`git log -1 --pretty="format:%ci" -- "${filePath}"`).toString().trim()
+    const parsedGitDate = new Date(gitDate)
+    if (!Number.isNaN(parsedGitDate.getTime())) {
+      return parsedGitDate
+    }
+  } catch {
+    // Untracked files do not have a Git timestamp yet.
+  }
+  return fs.statSync(filePath).mtime
+}
+
 const plugin = (file, _, cb) => {
   const path = file.path
   const data = fs.readFileSync(path, 'utf8')
@@ -44,10 +57,11 @@ const plugin = (file, _, cb) => {
   }
 
   vCard.photo.embedFromFile(path.replace('.yaml', '.png'))
-  let lastYamlChangeDateString = execSync(`git log -1 --pretty="format:%ci" "${path}"`).toString().trim().replace(/\s\+\d+/, '')
-  let lastPngChangeDateString = execSync(`git log -1 --pretty="format:%ci" "${path.replace('yaml', 'png')}"`).toString().trim().replace(/\s\+\d+/, '')
-
-  let rev = new Date(Math.max(new Date(lastYamlChangeDateString), new Date(lastPngChangeDateString))).toISOString()
+  const pngPath = path.replace(/\.yaml$/, '.png')
+  const rev = new Date(Math.max(
+    getLastChangeDate(path).getTime(),
+    getLastChangeDate(pngPath).getTime()
+  )).toISOString()
 
   let formatted = vCard.getFormattedString()
   formatted = formatted.replace(/REV:[\d\-:T\.Z]+/, 'REV:' + rev)

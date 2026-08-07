@@ -1,0 +1,9 @@
+basic:
+  organization: 沃尔玛
+  cellPhone:
+    - number: 4008301366
+      label: 中国业态客服
+  workEmail:
+    - email: WMCCS@wal-mart.com
+      label: 中国业态客服
+  url: https://www.walmart.cn/

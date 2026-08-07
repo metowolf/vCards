@@ -10,7 +10,8 @@ basic:
       label: 沃助理
     - number: 10655152
       label: 出境服务
-    - 10655511
+    - number: 10655511
+      label: 短信
     - 96169
     - number: 10165
       label: 沃留言

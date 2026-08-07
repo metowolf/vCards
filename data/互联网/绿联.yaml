@@ -1,0 +1,6 @@
+basic:
+  organization: 绿联
+  workEmail:
+    - email: service@ugreen.com
+      label: 官方商城客服
+  url: https://www.ugreen.com/pages/support

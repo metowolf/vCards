@@ -1,0 +1,9 @@
+basic:
+  organization: 顺丰同城
+  cellPhone:
+    - number: 9520888
+      label: 客服
+  workEmail:
+    - email: sftcjsjubao@sf-express.com
+      label: 廉洁举报
+  url: https://www.sf-cityrush.com/

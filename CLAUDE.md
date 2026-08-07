@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### 构建系统
 - 使用 Gulp 作为构建工具，配置文件在 `src/gulpfile.js`
 - 两个主要的生成流程：
-  - `generator` - 标准 vCard 生成，过滤 106 开头的长号码（超过11位）
+  - `generator` - 标准 vCard 生成，过滤未标记为短信的 106 长号码（超过11位）
   - `generator_ext` - 扩展版本，保留所有号码并添加 git 历史时间戳
 - 支持生成分类文件夹和汇总文件
 - 支持生成 Radicale CardDAV 服务所需的文件结构
@@ -104,7 +104,7 @@ npm run gulp buildWeb
 ## 特殊处理
 
 ### 电话号码过滤
-- 标准版本会过滤掉 106 开头的长号码（超过11位）
+- 标准版本会过滤掉未明确标记为“短信”的 106 开头长号码（超过11位）
 - 扩展版本保留所有号码
 
 ### 中文支持
@@ -143,7 +143,7 @@ npm run gulp buildWeb
 ## 关键技术细节
 
 ### vCard 生成差异
-- **标准版本** (`vcard.js`)：过滤 106 开头的长号码，适用于一般用户
+- **标准版本** (`vcard.js`)：过滤未标记为“短信”的 106 开头长号码，明确标记的短信号码会保留
 - **扩展版本** (`vcard-ext.js`)：保留所有号码，添加 REV 和 UID 字段，适用于 CardDAV
 
 ### Git 时间戳集成

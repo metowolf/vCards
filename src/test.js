@@ -100,8 +100,9 @@ test('Validation/no-duplicate-phones', t => {
 })
 
 for (const filePath of yamlPaths) {
-  const type = filePath.split('/')[1]
-  const name = filePath.split('/')[2].split('.')[0]
+  const relativePath = path.relative('data', filePath)
+  const type = path.dirname(relativePath)
+  const name = path.basename(filePath, '.yaml')
   test(`Image/${type}/${name}`, checkImage, `data/${type}/${name}.png`)
   test(`vCard/${type}/${name}`, checkVCard, `data/${type}/${name}.yaml`)
 }

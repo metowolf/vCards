@@ -1,0 +1,6 @@
+basic:
+  organization: VidHub
+  workEmail:
+    - email: contact@okaapps.com
+      label: 官方支持
+  url: https://okaapps.com/support

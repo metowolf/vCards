@@ -85,9 +85,15 @@ const webBuild = async () => {
         
         vcardsData.push({
           organization: data.basic.organization,
-          phones: data.basic.cellPhone || [],
+          phones: (data.basic.cellPhone || []).map(phone =>
+            typeof phone === 'object' && phone !== null
+              ? { number: phone.number, label: phone.label }
+              : { number: phone }
+          ),
           url: data.basic.url || null,
-          emails: data.basic.workEmail || [],
+          emails: (data.basic.workEmail || []).map(email =>
+            typeof email === 'object' && email !== null ? email.email : email
+          ),
           category: category,
           filename: fileName
         })
