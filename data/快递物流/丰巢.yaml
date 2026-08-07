@@ -2,5 +2,6 @@ basic:
   organization: 丰巢
   cellPhone:
     - 4000633333
-    - 1068915371004053
+    - number: 1068915371004053
+      label: 短信
   url: https://www.fcbox.com/

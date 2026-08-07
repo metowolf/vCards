@@ -1,0 +1,6 @@
+basic:
+  organization: UniFi
+  workEmail:
+    - email: support.cn@ui.com
+      label: 中国支持
+  url: https://unifi-network.ui.com/

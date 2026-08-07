@@ -146,13 +146,26 @@ function filterData() {
         const matchesSearch = !searchTerm || 
             item.organization.toLowerCase().includes(searchTerm) ||
             item.category.toLowerCase().includes(searchTerm) ||
-            (item.phones && item.phones.some(phone => phone.includes(searchTerm))) ||
+            (item.phones && item.phones.some(phone => phoneNumber(phone).toLowerCase().includes(searchTerm) || phoneLabel(phone).toLowerCase().includes(searchTerm))) ||
             (item.url && item.url.toLowerCase().includes(searchTerm));
         
         return matchesCategory && matchesSearch;
     });
     
     renderVCards();
+}
+
+function phoneNumber(phone) {
+    return String(typeof phone === 'object' && phone !== null ? phone.number : phone);
+}
+
+function phoneLabel(phone) {
+    return typeof phone === 'object' && phone !== null && phone.label ? String(phone.label) : '';
+}
+
+function renderPhone(phone) {
+    const label = phoneLabel(phone);
+    return `<span class="phone-item">${phoneNumber(phone)}${label ? ` <small>${label}</small>` : ''}</span>`;
 }
 
 // 渲染 vCard 卡片
@@ -192,7 +205,7 @@ function createVCardElement(vcard) {
         <div class="vcard-info">
             ${vcard.phones && vcard.phones.length > 0 ? `
                 <div class="vcard-phones">
-                    ${vcard.phones.slice(0, 3).map(phone => `<span class="phone-item">${phone}</span>`).join('')}
+                    ${vcard.phones.slice(0, 3).map(renderPhone).join('')}
                     ${vcard.phones.length > 3 ? `<span class="phone-item">+${vcard.phones.length - 3}</span>` : ''}
                 </div>
             ` : ''}
@@ -234,7 +247,7 @@ function showDownloadModal(vcard) {
     if (vcard.phones && vcard.phones.length > 0) {
         modalPhones.innerHTML = `
             <strong>📞 电话号码：</strong>
-            ${vcard.phones.map(phone => `<span class="phone-item">${phone}</span>`).join('')}
+            ${vcard.phones.map(renderPhone).join('')}
         `;
         modalPhones.style.display = 'block';
     } else {

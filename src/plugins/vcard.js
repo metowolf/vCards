@@ -52,7 +52,8 @@ const plugin = (file, _, cb) => {
   // 添加带标签的电话号码
   const filteredLabeled = labeledPhones.filter((phone) => {
     const phoneStr = `${phone.number}`
-    return !phoneStr.startsWith('106') || phoneStr.length <= 11
+    const isLabeledSms = typeof phone.label === 'string' && phone.label.includes('短信')
+    return !phoneStr.startsWith('106') || phoneStr.length <= 11 || isLabeledSms
   })
   if (filteredLabeled.length > 0) {
     let labeledEntries = ''
