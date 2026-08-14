@@ -1,7 +1,7 @@
 import fs from 'fs'
 import yaml from 'js-yaml'
 import vCardsJS from 'vcards-js'
-import {execSync} from 'child_process'
+import {spawnSync} from 'child_process'
 import addPhoneticField from '../utils/pinyin.js'
 
 const plugin = (file, _, cb) => {
@@ -44,8 +44,8 @@ const plugin = (file, _, cb) => {
   }
 
   vCard.photo.embedFromFile(path.replace('.yaml', '.png'))
-  let lastYamlChangeDateString = execSync(`git log -1 --pretty="format:%ci" "${path}"`).toString().trim().replace(/\s\+\d+/, '')
-  let lastPngChangeDateString = execSync(`git log -1 --pretty="format:%ci" "${path.replace('yaml', 'png')}"`).toString().trim().replace(/\s\+\d+/, '')
+  let lastYamlChangeDateString = spawnSync('git', ['log', '-1', '--pretty=format:%ci', path]).stdout.toString().trim().replace(/\s\+\d+/, '')
+  let lastPngChangeDateString = spawnSync('git', ['log', '-1', '--pretty=format:%ci', path.replace('yaml', 'png')]).stdout.toString().trim().replace(/\s\+\d+/, '')
 
   let rev = new Date(Math.max(new Date(lastYamlChangeDateString), new Date(lastPngChangeDateString))).toISOString()
 
