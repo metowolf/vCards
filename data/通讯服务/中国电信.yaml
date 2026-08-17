@@ -11,8 +11,7 @@ basic:
       label: 漏话提醒
     - number: 106599366
       label: 天翼防骚扰服务提醒
-    - number: 10659210000
-      label: 短信
+    - 10659210000
     - number: "+853 1888"
       label: 澳门
     - number: 10001688
