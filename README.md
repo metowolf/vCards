@@ -59,7 +59,7 @@
 
 #### iOS / Web
 - [在 iCloud 通讯录中创建群组](https://support.apple.com/kb/PH2667?locale=zh_CN)
-- [将联系人导入 iCloud 通讯录](https://support.apple.com/kb/ph3605?locale=zh_CN)
+- [将联系人导入 iCloud 通讯录](https://support.apple.com/zh-cn/guide/icloud/mmfba748b2/icloud)
 
 </details>
 
