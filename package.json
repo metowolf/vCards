@@ -27,7 +27,7 @@
     "gulp-rename": "^2.1.0",
     "gulp-zip": "^6.1.0",
     "image-size": "^1.2.1",
-    "joi": "^17.13.3",
+    "joi": "^17.13.6",
     "js-yaml": "^4.2.0",
     "pinyin-pro": "^3.27.0",
     "pretty-bytes": "^6.1.1",
