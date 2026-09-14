@@ -69,10 +69,8 @@ const plugin = (file, _, cb) => {
     let labeledEntries = ''
     labeledEmails.forEach((email, i) => {
       const idx = i + 1
-      labeledEntries += `item${idx}.EMAIL;TYPE=WORK:${email.email}
-`
-      labeledEntries += `item${idx}.X-ABLabel:${email.label}
-`
+      labeledEntries += `item${idx}.EMAIL;TYPE=WORK:${email.email}\r\n`
+      labeledEntries += `item${idx}.X-ABLabel:${email.label}\r\n`
     })
     formatted = formatted.replace('END:VCARD', labeledEntries + 'END:VCARD')
   }
