@@ -1,59 +1,54 @@
-import Joi from 'joi'
-import libphonenumber from 'google-libphonenumber'
+import { z } from 'zod'
 
-const checkPhone = (phone) => {
-  let phoneStr = `${phone}`
-  if (/^\+\d+ /.test(phoneStr)) {
-    phoneStr = phoneStr.replace(/^\+\d+ /, '')
+// 未携带国际区号的号码按中国大陆补 +86，带 + 的保留原国际区号
+const toE164 = (value) => {
+  const str = `${value}`.trim()
+  if (str.startsWith('+')) {
+    return `+${str.slice(1).replace(/\D/g, '')}`
   }
-  if (/^\d+$/.test(phoneStr)) {
-    return true
-  }
-  const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance()
-  const phoneNumber = phoneUtil.parseAndKeepRawInput(phoneStr, 'CN')
-  return phoneUtil.isValidNumber(phoneNumber)
+  return `+86${str.replace(/\D/g, '')}`
 }
 
-const schema = Joi.object({
-  basic: Joi.object({
-    organization: Joi.string().required(),
-    cellPhone: Joi.array().items(
-      Joi.string().custom((value, helper) => {
-        if (!checkPhone(value)) {
-          return helper.message("phone is incorrect")
-        }
-        return value
-      }),
-      Joi.number(),
-      Joi.object({
-        number: Joi.alternatives().try(
-          Joi.string().custom((value, helper) => {
-            if (!checkPhone(value)) {
-              return helper.message("phone is incorrect")
-            }
-            return value
-          }),
-          Joi.number()
-        ).required(),
-        label: Joi.string().required()
-      })
-    ).optional(),
-    url: Joi.string().uri().optional(),
-    workEmail: Joi.array().items(
-      Joi.string().email(),
-      Joi.object({
-        email: Joi.string().email().required(),
-        label: Joi.string().required()
-      })
-    ).optional()
-  }).required().custom((value, helpers) => {
-    const hasPhone = Array.isArray(value.cellPhone) && value.cellPhone.length > 0
-    const hasEmail = Array.isArray(value.workEmail) && value.workEmail.length > 0
-    if (!hasPhone && !hasEmail) {
-      return helpers.error('any.invalid', { message: 'cellPhone or workEmail is required' })
-    }
-    return value
-  })
+const phoneSchema = z
+  .union([z.string(), z.number()])
+  .transform(toE164)
+  .pipe(z.e164())
+
+const schema = z.object({
+  basic: z.object({
+    organization: z.string(),
+    cellPhone: z
+      .array(
+        z.union([
+          phoneSchema,
+          z.object({
+            number: phoneSchema,
+            label: z.string()
+          })
+        ])
+      )
+      .optional(),
+    url: z.url().optional(),
+    workEmail: z
+      .array(
+        z.union([
+          z.email(),
+          z.object({
+            email: z.email(),
+            label: z.string()
+          })
+        ])
+      )
+      .optional()
+  }).refine(
+    (value) => {
+      const hasPhone = Array.isArray(value.cellPhone) && value.cellPhone.length > 0
+      const hasEmail = Array.isArray(value.workEmail) && value.workEmail.length > 0
+      const hasUrl = typeof value.url === 'string' && value.url.length > 0
+      return hasPhone || hasEmail || hasUrl
+    },
+    { message: 'cellPhone, workEmail or url is required' }
+  )
 })
 
 export default schema

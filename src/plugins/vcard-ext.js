@@ -1,5 +1,5 @@
 import fs from 'fs'
-import yaml from 'js-yaml'
+import { load } from 'js-yaml'
 import vCardsJS from 'vcards-js'
 import {execFileSync} from 'child_process'
 import addPhoneticField from '../utils/pinyin.js'
@@ -7,7 +7,7 @@ import addPhoneticField from '../utils/pinyin.js'
 const plugin = (file, _, cb) => {
   const path = file.path
   const data = fs.readFileSync(path, 'utf8')
-  const json = yaml.load(data)
+  const json = load(data)
 
   // 分离带标签和不带标签的电话号码
   const labeledPhones = []

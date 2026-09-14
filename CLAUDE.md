@@ -17,8 +17,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### 构建系统
 - 使用 Gulp 作为构建工具，配置文件在 `src/gulpfile.js`
 - 两个主要的生成流程：
-  - `generator` - 标准 vCard 生成，过滤 106 开头的长号码（超过11位）
-  - `generator_ext` - 扩展版本，保留所有号码并添加 git 历史时间戳
+  - `generator` - 标准 vCard 生成
+  - `generator_ext` - 扩展版本，添加 git 历史时间戳
 - 支持生成分类文件夹和汇总文件
 - 支持生成 Radicale CardDAV 服务所需的文件结构
 - 网页版本构建：`buildWeb` - 生成可浏览的网页界面
@@ -58,7 +58,7 @@ npm run serve:web
 # 生成 vCard 文件到 temp 目录
 npm run gulp generator
 
-# 生成扩展版本 vCard（保留所有号码）
+# 生成扩展版本 vCard
 npm run gulp generator_ext
 
 # 生成分类汇总文件
@@ -83,9 +83,9 @@ npm run gulp buildWeb
 ## 数据验证和规范
 
 ### Schema 验证
-- 使用 Joi 进行数据验证，配置在 `src/const/schema.js`
-- 电话号码使用 `google-libphonenumber` 进行验证
-- 支持中国区号格式和国际格式
+- 使用 Zod 进行数据验证，配置在 `src/const/schema.js`
+- 电话号码使用 Zod 的 `z.e164()` 校验，未带 `+` 的号码自动补 `+86`
+- 支持中国区号格式和国际格式（带 `+` 的保持原区号）
 
 ### 测试规范
 - 图标必须是合法的 PNG 格式（优先 512x512px ≤50KB，也支持 200x200px ≤20KB）
@@ -100,12 +100,12 @@ npm run gulp buildWeb
    - `basic.cellPhone` - 电话号码数组
    - `basic.url` - 官网链接（可选）
    - `basic.workEmail` - 邮箱数组（可选）
+   - `basic` 至少包含 `cellPhone`、`workEmail`、`url` 之一
 
 ## 特殊处理
 
-### 电话号码过滤
-- 标准版本会过滤掉 106 开头的长号码（超过11位）
-- 扩展版本保留所有号码
+### 电话号码收录
+- 数据不收录 106 开头的短信推送长号码（超过11位）
 
 ### 中文支持
 - 自动生成拼音字段用于通讯录排序
@@ -143,8 +143,8 @@ npm run gulp buildWeb
 ## 关键技术细节
 
 ### vCard 生成差异
-- **标准版本** (`vcard.js`)：过滤 106 开头的长号码，适用于一般用户
-- **扩展版本** (`vcard-ext.js`)：保留所有号码，添加 REV 和 UID 字段，适用于 CardDAV
+- **标准版本** (`vcard.js`)：适用于一般用户
+- **扩展版本** (`vcard-ext.js`)：添加 REV 和 UID 字段，适用于 CardDAV
 
 ### Git 时间戳集成
 - 扩展版本使用 `git log` 获取文件最后修改时间

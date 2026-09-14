@@ -11,7 +11,7 @@ import concatFolders from 'gulp-concat-folders'
 
 import plugin_vcard from './plugins/vcard.js'
 import plugin_vcard_ext from './plugins/vcard-ext.js'
-import yaml from 'js-yaml'
+import { load } from 'js-yaml'
 
 const generator = () => {
   return gulp.src('data/*/*.yaml')
@@ -76,7 +76,7 @@ const webBuild = async () => {
     
     for (const filePath of yamlFiles) {
       const content = fs.readFileSync(filePath, 'utf8')
-      const data = yaml.load(content)
+      const data = load(content)
       
       if (data && data.basic) {
         const fileName = path.basename(filePath, '.yaml')

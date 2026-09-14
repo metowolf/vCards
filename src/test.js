@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import test from 'ava'
-import yaml from 'js-yaml'
+import { load } from 'js-yaml'
 import { readChunkSync } from 'read-chunk'
 import imageSize from 'image-size'
 import prettyBytes from 'pretty-bytes'
@@ -37,12 +37,15 @@ const checkImage = (t, filePath) => {
 
 const checkVCard = (t, filePath) => {
   const data = fs.readFileSync(filePath, 'utf8')
-  const json = yaml.load(data)
+  const json = load(data)
 
   // 检查 schema
-  const { value, error } = schema.validate(json)
-  if (error) {
-    t.fail(`schema 校验失败 ${error.message}, ${JSON.stringify(value)}`)
+  const result = schema.safeParse(json)
+  if (!result.success) {
+    const message = result.error.issues
+      .map((issue) => `${issue.path.join('.')}: ${issue.message}`)
+      .join('; ')
+    t.fail(`schema 校验失败 ${message}, ${JSON.stringify(json)}`)
   }
 
   for (const block of blockList) {
@@ -78,7 +81,7 @@ test('Validation/no-duplicate-phones', t => {
 
   for (const filePath of yamlPaths) {
     const data = fs.readFileSync(filePath, 'utf8')
-    const json = yaml.load(data)
+    const json = load(data)
     const phones = json?.basic?.cellPhone ?? []
 
     for (const phone of phones) {
