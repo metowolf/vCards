@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path'
-import { deleteAsync } from 'del'
 import through2 from 'through2'
 
 import gulp from 'gulp'
@@ -52,17 +51,15 @@ const allinone = () => {
     .pipe(gulp.dest('./temp/汇总'))
 }
 
-const clean = () => {
-  return deleteAsync([
-    'public',
-    'temp'
-  ])
+const removeDirs = (...dirs) =>
+  dirs.forEach(dir => fs.rmSync(dir, { recursive: true, force: true }))
+
+const clean = async () => {
+  removeDirs('public', 'temp')
 }
 
-const cleanWeb = () => {
-  return deleteAsync([
-    'public-web'
-  ])
+const cleanWeb = async () => {
+  removeDirs('public-web')
 }
 
 // 网页版本构建任务
@@ -232,10 +229,8 @@ const createRadicale = () => {
   return gulp.src('temp/**', {})
 }
 
-const cleanRadicale = () => {
-  return deleteAsync([
-    'radicale'
-  ], {force: true})
+const cleanRadicale = async () => {
+  removeDirs('radicale')
 }
 
 const distRadicale = () => {

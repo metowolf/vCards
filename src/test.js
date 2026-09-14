@@ -3,21 +3,25 @@ import path from 'path'
 import test from 'ava'
 import { load } from 'js-yaml'
 import { readChunkSync } from 'read-chunk'
-import imageSize from 'image-size'
 import prettyBytes from 'pretty-bytes'
 import isPng from './utils/isPng.js'
+import pngSize from './utils/pngSize.js'
 import blockList from './const/block.js'
 import schema from './const/schema.js'
 
 const checkImage = (t, filePath) => {
   const buffer = readChunkSync(filePath, {
     startPosition: 0,
-    length: 8
+    length: 24
   })
   if (!isPng(buffer)) {
     t.fail('图片格式不合法')
   }
-  const dimensions = imageSize(filePath)
+  const dimensions = pngSize(buffer)
+  if (!dimensions) {
+    t.fail('图片尺寸解析失败')
+    return
+  }
   const lstat = fs.lstatSync(filePath)
 
   // 支持两种规格：200x200px/20KB 或 512x512px/50KB
