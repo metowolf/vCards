@@ -1,45 +1,48 @@
 import fs from 'fs'
 import path from 'path'
-import test from 'ava'
+import { test } from 'node:test'
+import assert from 'node:assert'
 import { load } from 'js-yaml'
-import { readChunkSync } from 'read-chunk'
-import prettyBytes from 'pretty-bytes'
 import isPng from './utils/isPng.js'
 import pngSize from './utils/pngSize.js'
 import blockList from './const/block.js'
 import schema from './const/schema.js'
 
-const checkImage = (t, filePath) => {
-  const buffer = readChunkSync(filePath, {
-    startPosition: 0,
-    length: 24
-  })
-  if (!isPng(buffer)) {
-    t.fail('图片格式不合法')
+// 读取文件前 24 字节
+const readHead = (filePath, length) => {
+  const fd = fs.openSync(filePath, 'r')
+  try {
+    const buffer = Buffer.alloc(length)
+    const n = fs.readSync(fd, buffer, 0, length, 0)
+    return buffer.subarray(0, n)
+  } finally {
+    fs.closeSync(fd)
   }
+}
+
+const checkImage = (filePath) => {
+  const buffer = readHead(filePath, 24)
+  assert.ok(isPng(buffer), '图片格式不合法')
   const dimensions = pngSize(buffer)
-  if (!dimensions) {
-    t.fail('图片尺寸解析失败')
-    return
-  }
-  const lstat = fs.lstatSync(filePath)
+  assert.ok(dimensions, '图片尺寸解析失败')
 
   // 支持两种规格：200x200px/20KB 或 512x512px/50KB
   const is200 = dimensions.width === 200 && dimensions.height === 200
   const is512 = dimensions.width === 512 && dimensions.height === 512
+  assert.ok(
+    is200 || is512,
+    `图片尺寸不合法 ${dimensions.width}x${dimensions.height}，需要 200x200 或 512x512`
+  )
 
-  if (!is200 && !is512) {
-    t.fail(`图片尺寸不合法 ${dimensions.width}x${dimensions.height}，需要 200x200 或 512x512`)
-  }
-
+  const lstat = fs.lstatSync(filePath)
   const sizeLimit = is512 ? 1024 * 50 : 1024 * 20
-  if (lstat.size > sizeLimit) {
-    t.fail(`图片文件体积超过限制 ${prettyBytes(lstat.size)}`)
-  }
-  t.pass()
+  assert.ok(
+    lstat.size <= sizeLimit,
+    `图片文件体积超过限制 ${(lstat.size / 1024).toFixed(1)} KB`
+  )
 }
 
-const checkVCard = (t, filePath) => {
+const checkVCard = (filePath) => {
   const data = fs.readFileSync(filePath, 'utf8')
   const json = load(data)
 
@@ -49,26 +52,24 @@ const checkVCard = (t, filePath) => {
     const message = result.error.issues
       .map((issue) => `${issue.path.join('.')}: ${issue.message}`)
       .join('; ')
-    t.fail(`schema 校验失败 ${message}, ${JSON.stringify(json)}`)
+    assert.fail(`schema 校验失败 ${message}, ${JSON.stringify(json)}`)
   }
 
   for (const block of blockList) {
-    if (block.organization === json.basic.organization) {
-      t.fail(`不收录 ${block.organization}，原因：${block.reason}`)
-    }
+    assert.notStrictEqual(
+      block.organization,
+      json.basic.organization,
+      `不收录 ${block.organization}，原因：${block.reason}`
+    )
   }
-
-  t.pass()
 }
 
 const getYamlPaths = () => {
   const base = 'data'
-  const categories = fs.readdirSync(base, { withFileTypes: true })
   const paths = []
-  for (const cat of categories) {
+  for (const cat of fs.readdirSync(base, { withFileTypes: true })) {
     if (!cat.isDirectory()) continue
-    const files = fs.readdirSync(path.join(base, cat.name))
-    for (const file of files) {
+    for (const file of fs.readdirSync(path.join(base, cat.name))) {
       if (file.endsWith('.yaml')) {
         paths.push(path.join(base, cat.name, file))
       }
@@ -79,7 +80,7 @@ const getYamlPaths = () => {
 
 const yamlPaths = getYamlPaths()
 
-test('Validation/no-duplicate-phones', t => {
+test('Validation/no-duplicate-phones', () => {
   const phoneMap = new Map()
   const duplicates = []
 
@@ -99,7 +100,7 @@ test('Validation/no-duplicate-phones', t => {
     }
   }
 
-  t.is(
+  assert.strictEqual(
     duplicates.length,
     0,
     `发现重复电话号码:\n${duplicates.join('\n')}`
@@ -109,6 +110,6 @@ test('Validation/no-duplicate-phones', t => {
 for (const filePath of yamlPaths) {
   const type = filePath.split('/')[1]
   const name = filePath.split('/')[2].split('.')[0]
-  test(`Image/${type}/${name}`, checkImage, `data/${type}/${name}.png`)
-  test(`vCard/${type}/${name}`, checkVCard, `data/${type}/${name}.yaml`)
+  test(`Image/${type}/${name}`, () => checkImage(`data/${type}/${name}.png`))
+  test(`vCard/${type}/${name}`, () => checkVCard(`data/${type}/${name}.yaml`))
 }
