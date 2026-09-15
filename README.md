@@ -76,7 +76,7 @@
 ## 参与维护
 
 1. 在 `/data/类别/` 目录下添加 `yaml` 和 `png` 文件
-2. 在根目录执行 `npm test` 检查格式规范
+2. 在根目录执行 `bun install` 安装依赖，再执行 `bun test` 检查格式规范
 3. 提交 Pull Request，等待合并
 
 ---

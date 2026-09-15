@@ -1,8 +1,11 @@
-FROM node as builder
+FROM oven/bun:1-alpine AS builder
 
-COPY . /app
+# radicale 任务依赖 git 读取 yaml/png 的提交时间作为 REV
+RUN apk add --no-cache git
+
 WORKDIR /app
-RUN npm install && npm run radicale
+COPY . .
+RUN bun install --frozen-lockfile && bun run radicale
 
 
 FROM alpine:edge
