@@ -5,9 +5,12 @@ on:
     branches: [ "master" ]
     paths:
     - "data/**"
+    - "src/**"
     - ".github/**"
     - "Dockerfile"
     - "package.json"
+    - "bun.lock"
+    - "tsconfig.json"
   workflow_dispatch:
 
 jobs:
@@ -17,16 +20,18 @@ jobs:
       release_tag: ${{ steps.create_release.outputs.tag_name }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Generate release tag
         id: generate_tag
         run: |
           RELEASE_TAG=$(date +'%Y.%m.%d-%H%M%S')
           echo "tag=$RELEASE_TAG" >> $GITHUB_OUTPUT
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
       - name: Build
         run: |
-          npm install
-          npm run build
+          bun install --frozen-lockfile
+          bun run build
       - name: Create Release
         id: create_release
         env:
@@ -46,7 +51,7 @@ jobs:
     needs: release-build
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set environment variables
         run: |
           IMAGE_VERSION="${{ needs.release-build.outputs.release_tag }}"
