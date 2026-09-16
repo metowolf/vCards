@@ -1,4 +1,4 @@
-FROM oven/bun:1-alpine AS builder
+FROM oven/bun:1.4.2-alpine AS builder
 
 # radicale 任务依赖 git 读取 yaml/png 的提交时间作为 REV
 RUN apk add --no-cache git
