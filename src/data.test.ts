@@ -1,5 +1,4 @@
 import { expect, test } from 'bun:test'
-import { load } from 'js-yaml'
 import { blockList } from './const/block'
 import { schema } from './const/schema'
 import { DATA_DIR, listYamlPaths } from './core/data'
@@ -15,7 +14,7 @@ const readHead = async (filePath: string): Promise<Uint8Array> =>
   new Uint8Array(await Bun.file(filePath).slice(0, 24).arrayBuffer())
 
 const loadYaml = async (filePath: string): Promise<VCardData> =>
-  load(await Bun.file(filePath).text()) as VCardData
+  Bun.YAML.parse(await Bun.file(filePath).text()) as VCardData
 
 /** 断言取值非空，并保留调用方的错误信息 */
 const required = <T>(value: T | null | undefined, message: string): T => {

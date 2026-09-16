@@ -1,5 +1,4 @@
-import { Glob } from 'bun'
-import { load } from 'js-yaml'
+import { Glob, YAML } from 'bun'
 import { isVCardData } from '../const/schema'
 import type { VCardData } from '../const/schema'
 
@@ -22,7 +21,7 @@ export const readVCardData = async (yamlPath: string): Promise<VCardData> => {
     throw new Error(`数据文件不存在: ${yamlPath}`)
   }
 
-  const data: unknown = load(await file.text())
+  const data: unknown = YAML.parse(await file.text())
   if (!isVCardData(data)) {
     throw new Error(`数据格式不合法: ${yamlPath}`)
   }
