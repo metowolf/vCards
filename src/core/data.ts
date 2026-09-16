@@ -1,6 +1,7 @@
 import { Glob } from 'bun'
 import { load } from 'js-yaml'
-import type { VCardData } from '../types'
+import { isVCardData } from '../const/schema'
+import type { VCardData } from '../const/schema'
 
 /** 数据目录，形如 `data/<分类>/<机构>.yaml` 与同名 `.png` */
 export const DATA_DIR = 'data'
@@ -14,16 +15,7 @@ export const listYamlPaths = (base = DATA_DIR): string[] =>
     .map((filePath) => filePath.replace(/^\.\//, ''))
     .sort()
 
-const isVCardData = (value: unknown): value is VCardData => {
-  if (typeof value !== 'object' || value === null) return false
-
-  const basic = (value as { basic?: unknown }).basic
-  if (typeof basic !== 'object' || basic === null) return false
-
-  return typeof (basic as { organization?: unknown }).organization === 'string'
-}
-
-/** 读取并解析 YAML 数据，缺少 `basic.organization` 时直接抛错 */
+/** 读取并解析 YAML 数据，格式不合法时直接抛错 */
 export const readVCardData = async (yamlPath: string): Promise<VCardData> => {
   const file = Bun.file(yamlPath)
   if (!(await file.exists())) {
@@ -32,7 +24,7 @@ export const readVCardData = async (yamlPath: string): Promise<VCardData> => {
 
   const data: unknown = load(await file.text())
   if (!isVCardData(data)) {
-    throw new Error(`数据格式不合法，缺少 basic.organization: ${yamlPath}`)
+    throw new Error(`数据格式不合法: ${yamlPath}`)
   }
 
   return data
