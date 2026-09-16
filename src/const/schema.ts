@@ -66,7 +66,10 @@ export type VCardSchemaInput = z.input<typeof schema>
 export type VCardSchemaOutput = z.output<typeof schema>
 
 export const isPhoneEntry = (phone: Phone): phone is PhoneEntry =>
-  typeof phone === 'object' && phone !== null && 'number' in phone
+  phoneEntrySchema.safeParse(phone).success
 
 export const isEmailEntry = (email: Email): email is EmailEntry =>
-  typeof email === 'object' && email !== null && 'email' in email
+  emailEntrySchema.safeParse(email).success
+
+export const isVCardData = (value: unknown): value is VCardData =>
+  schema.safeParse(value).success
