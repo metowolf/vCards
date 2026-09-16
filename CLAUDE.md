@@ -22,7 +22,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `src/core/git.ts` - 读取 yaml/png 的 git 提交时间（REV）
   - `src/core/vcard.ts` - vCard 渲染（标准版与 CardDAV 版共用）
   - `src/const/` - Zod schema（`schema.ts`）与不收录名单（`block.ts`）
-  - `src/utils/` - PNG 校验、拼音、并发池等纯函数
+  - `src/utils/` - 拼音、并发池等纯函数
 
 ### 构建系统
 - 运行时与包管理器为 Bun，TypeScript 通过 `tsc --noEmit` 做类型检查
