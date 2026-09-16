@@ -1,6 +1,6 @@
 import { Glob } from 'bun'
 import { load } from 'js-yaml'
-import type { VCardData } from '../types'
+import type { VCardData } from '../const/schema'
 
 /** 数据目录，形如 `data/<分类>/<机构>.yaml` 与同名 `.png` */
 export const DATA_DIR = 'data'

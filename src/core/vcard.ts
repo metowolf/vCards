@@ -1,6 +1,6 @@
 import vCardsJS from 'vcards-js'
-import { isEmailEntry, isPhoneEntry } from '../types'
-import type { EmailEntry, PhoneEntry } from '../types'
+import { isEmailEntry, isPhoneEntry } from '../const/schema'
+import type { EmailEntry, PhoneEntry } from '../const/schema'
 import { addPhoneticField } from '../utils/pinyin'
 import { readVCardData } from './data'
 
