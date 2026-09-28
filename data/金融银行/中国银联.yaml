@@ -3,3 +3,6 @@ basic:
   cellPhone:
     - 95516
   url: https://cn.unionpay.com/
+  workEmail:
+    - email: creditreport@unionpay.com
+      label: 信用报告
