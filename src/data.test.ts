@@ -1,14 +1,9 @@
 import { expect, test } from 'bun:test'
 import { blockList } from './const/block'
-import { schema } from './const/schema'
-import { DATA_DIR, listYamlPaths } from './core/data'
+import { DATA_DIR, listYamlPaths, readVCardData } from './core/data'
 import { isPhoneEntry } from './const/schema'
-import type { VCardData } from './const/schema'
 
 const yamlPaths = listYamlPaths()
-
-const loadYaml = async (filePath: string): Promise<VCardData> =>
-  Bun.YAML.parse(await Bun.file(filePath).text()) as VCardData
 
 /** 断言取值非空，并保留调用方的错误信息 */
 const required = <T>(value: T | null | undefined, message: string): T => {
@@ -41,15 +36,7 @@ const checkImage = async (filePath: string): Promise<void> => {
 }
 
 const checkVCard = async (filePath: string): Promise<void> => {
-  const data = await loadYaml(filePath)
-
-  const result = schema.safeParse(data)
-  if (!result.success) {
-    const message = result.error.issues
-      .map((issue) => `${issue.path.join('.')}: ${issue.message}`)
-      .join('; ')
-    throw new Error(`${filePath} schema 校验失败 ${message}, ${JSON.stringify(data)}`)
-  }
+  const data = await readVCardData(filePath)
 
   for (const block of blockList) {
     if (block.organization === data.basic.organization) {
@@ -63,7 +50,7 @@ test('Validation/no-duplicate-phones', async () => {
   const duplicates: string[] = []
 
   for (const filePath of yamlPaths) {
-    const data = await loadYaml(filePath)
+    const data = await readVCardData(filePath)
 
     for (const phone of data.basic.cellPhone ?? []) {
       const normalized = String(isPhoneEntry(phone) ? phone.number : phone).replace(/\D/g, '')
