@@ -62,7 +62,7 @@ export const renderVCard = async (
   }
 
   // 为中文机构名补充拼音字段，便于通讯录排序
-  formatted = addPhoneticField(formatted, 'ORG')
+  formatted = addPhoneticField(formatted, 'ORG', basic.organization)
 
   const labeled =
     renderLabeled(labeledPhones, 'TEL;TYPE=CELL') + renderLabeled(labeledEmails, 'EMAIL;TYPE=WORK')
