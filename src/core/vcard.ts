@@ -1,7 +1,6 @@
 import vCardsJS from 'vcards-js'
 import { isEmailEntry, isPhoneEntry } from '../const/schema'
-import type { EmailEntry, PhoneEntry } from '../const/schema'
-import { addPhoneticField } from '../utils/pinyin'
+import { appendABLabel, appendPhonetic } from '../utils/line'
 import { readVCardData } from './data'
 
 export interface RenderOptions {
@@ -11,18 +10,6 @@ export interface RenderOptions {
    */
   carddav?: { revision: string }
 }
-
-// iOS 通过 X-ABLabel 展示自定义标签，需要 itemN 分组前缀
-const renderLabeled = (
-  entries: Array<PhoneEntry | EmailEntry>,
-  type: 'TEL;TYPE=CELL' | 'EMAIL;TYPE=WORK'
-): string =>
-  entries
-    .map((entry, index) => {
-      const value = 'number' in entry ? entry.number : entry.email
-      return `item${index + 1}.${type}:${value}\r\nitem${index + 1}.X-ABLabel:${entry.label}\r\n`
-    })
-    .join('')
 
 /** 将单个 YAML 数据渲染为 vCard 3.0 文本 */
 export const renderVCard = async (
@@ -62,13 +49,10 @@ export const renderVCard = async (
   }
 
   // 为中文机构名补充拼音字段，便于通讯录排序
-  formatted = addPhoneticField(formatted, 'ORG')
+  formatted = appendPhonetic(formatted, 'ORG', basic.organization)
 
-  const labeled =
-    renderLabeled(labeledPhones, 'TEL;TYPE=CELL') + renderLabeled(labeledEmails, 'EMAIL;TYPE=WORK')
-  if (labeled) {
-    formatted = formatted.replace('END:VCARD', labeled + 'END:VCARD')
-  }
+  formatted = appendABLabel(formatted, labeledPhones, 'TEL;TYPE=CELL')
+  formatted = appendABLabel(formatted, labeledEmails, 'EMAIL;TYPE=WORK')
 
   return formatted
 }
