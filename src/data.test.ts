@@ -1,5 +1,6 @@
 import { expect, test } from "bun:test";
 import { blockList } from "./const/block";
+import { linkExceptions } from "./const/link";
 import { DATA_DIR, listYamlPaths, readVCardData } from "./core/data";
 import { isPhoneEntry } from "./const/schema";
 
