@@ -29,7 +29,7 @@ export const schema = z.object({
     .object({
       organization: z.string(),
       cellPhone: z.array(z.union([phoneSchema, phoneEntrySchema])).optional(),
-      url: z.url().optional(),
+      url: z.httpUrl().optional(),
       workEmail: z.array(z.union([z.email(), emailEntrySchema])).optional(),
     })
     .refine(
