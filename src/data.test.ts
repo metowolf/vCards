@@ -87,7 +87,7 @@ test("Validation/link-https-path", async () => {
       continue;
     }
 
-    if (linkExceptions.some((exception) => exception.link === url)) {
+    if (linkExceptions.some((exception) => exception.organization === data.basic.organization && exception.link === url)) {
       continue;
     }
 
