@@ -1,5 +1,6 @@
 import { expect, test } from 'bun:test'
 import { blockList } from './const/block'
+import { linkExceptions } from './const/link'
 import { DATA_DIR, listYamlPaths, readVCardData } from './core/data'
 import { isPhoneEntry } from './const/schema'
 
@@ -65,6 +66,31 @@ test('Validation/no-duplicate-phones', async () => {
   }
 
   expect(duplicates).toEqual([])
+})
+
+test('Validation/link-https-path', async () => {
+  const invalidations: string[] = []
+
+  for (const filePath of yamlPaths) {
+    const data = await readVCardData(filePath)
+    const url = data.basic.url
+
+    if (url === undefined) {
+      continue
+    }
+
+    if (linkExceptions.some((exception) => exception.organization === data.basic.organization && exception.link === url)) {
+      continue
+    }
+
+    // 单个正则同时判定 https 协议与 path 有值：Bun 的 URL 解析会规范化裸域名的 pathname，不能改用解析式判定
+    const isHttpsWithPath = /^https:\/\/[^/?#]*\//.test(url)
+    if (!isHttpsWithPath) {
+      invalidations.push(`${filePath}: ${url}`)
+    }
+  }
+
+  expect(invalidations).toEqual([])
 })
 
 for (const yamlPath of yamlPaths) {
