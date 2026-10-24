@@ -2,15 +2,15 @@ name: Release
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
     paths:
-    - "data/**"
-    - "src/**"
-    - ".github/**"
-    - "Dockerfile"
-    - "package.json"
-    - "bun.lock"
-    - "tsconfig.json"
+      - "data/**"
+      - "src/**"
+      - ".github/**"
+      - "Dockerfile"
+      - "package.json"
+      - "bun.lock"
+      - "tsconfig.json"
   workflow_dispatch:
 
 jobs:

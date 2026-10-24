@@ -10,10 +10,12 @@
 
 ### 方法一：安装 CardDAV 描述文件（推荐）
 
-1. 使用**系统相机**扫描下方二维码，下载配置描述文件  
->   <a href="https://vcards.metowolf.com/vcards.mobileconfig"><img src="https://github.com/user-attachments/assets/238f9d9a-5aa6-4636-8e67-4829535eaab9" width="150px" height="150px" /></a>
+1. 使用**系统相机**扫描下方二维码，下载配置描述文件
 
-2. 打开“设置”App，轻点“已下载描述文件”或“注册 [组织的名称]”  
+> <a href="https://vcards.metowolf.com/vcards.mobileconfig"><img src="https://github.com/user-attachments/assets/238f9d9a-5aa6-4636-8e67-4829535eaab9" width="150px" height="150px" /></a>
+
+2. 打开“设置”App，轻点“已下载描述文件”或“注册 [组织的名称]”
+
 >   <img src="https://github.com/user-attachments/assets/12997c2d-6172-49f0-9236-0b4f30ad9ebd" width="300px" />
 
 3. 在右上角点击“安装”，按屏幕提示操作完成导入。
@@ -54,10 +56,12 @@
 2. 解压后，根据不同平台指南导入 `vcf` 文件至 iCloud（建议单独创建「黄页」分组以便管理与隐藏）
 
 #### macOS
+
 - [在 Mac 上的“通讯录”中创建联系人群组](https://support.apple.com/zh-cn/guide/contacts/adrb3280fe91/12.0/mac/10.14)
 - [在 Mac 上的“通讯录”中导入来自其他应用的联系人](https://support.apple.com/zh-cn/guide/contacts/adrbk1457/mac)
 
 #### iOS / Web
+
 - [在 iCloud 通讯录中创建群组](https://support.apple.com/kb/PH2667?locale=zh_CN)
 - [将联系人导入 iCloud 通讯录](https://support.apple.com/zh-cn/guide/icloud/mmfba748b2/icloud)
 

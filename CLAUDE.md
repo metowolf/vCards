@@ -11,6 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 核心架构
 
 ### 文件结构
+
 - `data/` - 按分类存储的 YAML 数据文件和对应的 PNG 图标
   - 每个条目包含一个 `.yaml` 配置文件和一个 `.png` 图标文件
   - YAML 文件包含 `basic` 对象，包含 `organization`、`cellPhone`、`url`、`workEmail` 等字段
@@ -25,6 +26,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `src/utils/` - 拼音、并发池等纯函数
 
 ### 构建系统
+
 - 运行时与包管理器为 Bun，TypeScript 通过 `tsc --noEmit` 做类型检查
 - 两个主要的生成流程（`src/build.ts` 中的 task）：
   - `build` - 标准 vCard 生成，产出 `temp/` 与 `public/`
@@ -34,6 +36,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 构建产物与旧版 Node 实现逐字节一致（标准版仅 REV 为构建时间）
 
 ### vCard 渲染
+
 - `src/core/vcard.ts` 的 `renderVCard(yamlPath, options)` 为统一入口
 - 不传 `options.carddav` 时生成标准 vCard；传入 `{ carddav: { revision } }` 时写入
   稳定的 UID 与基于 git 提交时间的 REV（对应原来的 `vcard-ext` 插件）
@@ -43,6 +46,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 常用命令
 
 ### 开发和测试
+
 ```bash
 # 安装依赖
 bun install
@@ -63,16 +67,19 @@ bun run radicale
 ## 数据验证和规范
 
 ### Schema 验证
+
 - 使用 Zod 进行数据验证，配置在 `src/const/schema.ts`
 - 电话号码使用 Zod 的 `z.e164()` 校验，未带 `+` 的号码自动补 `+86`
 - 支持中国区号格式和国际格式（带 `+` 的保持原区号）
 
 ### 测试规范
+
 - 图标必须是合法的 PNG 格式（优先 512x512px ≤50KB，也支持 200x200px ≤20KB）
 - YAML 数据必须符合定义的 schema
 - 检查阻止列表（`src/const/block.js`）中的机构
 
 ### 添加新条目
+
 1. 在对应的 `data/分类/` 目录下添加 `.yaml` 和 `.png` 文件
 2. 运行 `bun test` 检查格式规范
 3. YAML 文件必须包含：
@@ -85,13 +92,16 @@ bun run radicale
 ## 特殊处理
 
 ### 电话号码收录
+
 - 数据不收录 106 开头的短信推送长号码（超过11位）
 
 ### 中文支持
+
 - 自动生成拼音字段用于通讯录排序
 - 使用 `pinyin-pro` 库进行拼音转换
 
 ### CardDAV 服务
+
 - 生成 Radicale 兼容的目录结构
 - iOS 版本按分类生成文件夹
 - macOS 版本将所有联系人合并到一个文件夹
@@ -106,15 +116,18 @@ bun run radicale
 ## 关键技术细节
 
 ### vCard 生成差异
+
 - **标准版本**（`bun run build`）：`renderVCard()` 不传 `carddav` 选项，适用于一般用户
 - **CardDAV 版本**（`bun run radicale`）：传入 `carddav: { revision }`，添加稳定的 UID 和基于 git 的 REV 字段
 
 ### Git 时间戳集成
+
 - CardDAV 版本通过 `src/core/git.ts` 使用 `git log` 获取文件最后修改时间（并发上限 8）
 - REV 字段使用 YAML 和 PNG 文件中较新的时间戳
 - 确保 CardDAV 客户端能正确检测更新
 
 ### 拼音处理
+
 - 使用 `pinyin-pro` 库生成拼音（`src/utils/pinyin.ts`）
 - 自动为中文机构名添加 `X-PHONETIC-ORG` 字段
 - 支持通讯录中的中文排序功能

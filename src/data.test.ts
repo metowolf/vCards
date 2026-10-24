@@ -1,77 +1,89 @@
-import { expect, test } from 'bun:test'
-import { blockList } from './const/block'
-import { DATA_DIR, listYamlPaths, readVCardData } from './core/data'
-import { isPhoneEntry } from './const/schema'
+import { expect, test } from "bun:test";
+import { blockList } from "./const/block";
+import { DATA_DIR, listYamlPaths, readVCardData } from "./core/data";
+import { isPhoneEntry } from "./const/schema";
 
-const yamlPaths = listYamlPaths()
+const yamlPaths = listYamlPaths();
 
 /** 断言取值非空，并保留调用方的错误信息 */
 const required = <T>(value: T | null | undefined, message: string): T => {
   if (value === null || value === undefined) {
-    throw new Error(message)
+    throw new Error(message);
   }
-  return value
-}
+  return value;
+};
 
 const checkImage = async (filePath: string): Promise<void> => {
-  const img = new Bun.Image(filePath)
-  const { width, height, format } = await img.metadata()
+  const img = new Bun.Image(filePath);
+  const { width, height, format } = await img.metadata();
 
-  if (format !== 'png') {
-    throw new Error(`${filePath} 图片格式不合法`)
+  if (format !== "png") {
+    throw new Error(`${filePath} 图片格式不合法`);
   }
 
   // 支持两种规格：200x200px/20KB 或 512x512px/50KB
-  const is200 = width === 200 && height === 200
-  const is512 = width === 512 && height === 512
+  const is200 = width === 200 && height === 200;
+  const is512 = width === 512 && height === 512;
   if (!is200 && !is512) {
-    throw new Error(`${filePath} 图片尺寸不合法 ${width}x${height}，需要 200x200 或 512x512`)
+    throw new Error(
+      `${filePath} 图片尺寸不合法 ${width}x${height}，需要 200x200 或 512x512`,
+    );
   }
 
-  const sizeLimit = is512 ? 1024 * 50 : 1024 * 20
-  const { size } = await Bun.file(filePath).stat()
+  const sizeLimit = is512 ? 1024 * 50 : 1024 * 20;
+  const { size } = await Bun.file(filePath).stat();
   if (size > sizeLimit) {
-    throw new Error(`${filePath} 图片体积 ${(size / 1024).toFixed(1)} KB 超过限制`)
+    throw new Error(
+      `${filePath} 图片体积 ${(size / 1024).toFixed(1)} KB 超过限制`,
+    );
   }
-}
+};
 
 const checkVCard = async (filePath: string): Promise<void> => {
-  const data = await readVCardData(filePath)
+  const data = await readVCardData(filePath);
 
   for (const block of blockList) {
     if (block.organization === data.basic.organization) {
-      throw new Error(`${filePath} 不收录 ${block.organization}，原因：${block.reason}`)
+      throw new Error(
+        `${filePath} 不收录 ${block.organization}，原因：${block.reason}`,
+      );
     }
   }
-}
+};
 
-test('Validation/no-duplicate-phones', async () => {
-  const phoneMap = new Map<string, string>()
-  const duplicates: string[] = []
+test("Validation/no-duplicate-phones", async () => {
+  const phoneMap = new Map<string, string>();
+  const duplicates: string[] = [];
 
   for (const filePath of yamlPaths) {
-    const data = await readVCardData(filePath)
+    const data = await readVCardData(filePath);
 
     for (const phone of data.basic.cellPhone ?? []) {
-      const normalized = String(isPhoneEntry(phone) ? phone.number : phone).replace(/\D/g, '')
-      const seen = phoneMap.get(normalized)
+      const normalized = String(
+        isPhoneEntry(phone) ? phone.number : phone,
+      ).replace(/\D/g, "");
+      const seen = phoneMap.get(normalized);
 
       if (seen) {
-        duplicates.push(`${normalized}: ${seen} 和 ${filePath}`)
+        duplicates.push(`${normalized}: ${seen} 和 ${filePath}`);
       } else {
-        phoneMap.set(normalized, filePath)
+        phoneMap.set(normalized, filePath);
       }
     }
   }
 
-  expect(duplicates).toEqual([])
-})
+  expect(duplicates).toEqual([]);
+});
 
 for (const yamlPath of yamlPaths) {
-  const segments = yamlPath.split('/')
-  const type = required(segments[1], `数据路径不合法: ${yamlPath}`)
-  const name = required(segments[2], `数据路径不合法: ${yamlPath}`).replace(/\.yaml$/, '')
+  const segments = yamlPath.split("/");
+  const type = required(segments[1], `数据路径不合法: ${yamlPath}`);
+  const name = required(segments[2], `数据路径不合法: ${yamlPath}`).replace(
+    /\.yaml$/,
+    "",
+  );
 
-  test(`Image/${type}/${name}`, () => checkImage(`${DATA_DIR}/${type}/${name}.png`))
-  test(`vCard/${type}/${name}`, () => checkVCard(yamlPath))
+  test(`Image/${type}/${name}`, () =>
+    checkImage(`${DATA_DIR}/${type}/${name}.png`));
+  test(`vCard/${type}/${name}`, () => checkVCard(yamlPath));
 }
