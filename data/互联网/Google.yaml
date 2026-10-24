@@ -5,4 +5,5 @@ basic:
   workEmail:
     - no-reply@accounts.google.com
     - no-reply@google.com
+    - noreply-accounts@google.com
   url: https://www.google.com/
