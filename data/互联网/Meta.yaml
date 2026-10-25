@@ -1,0 +1,6 @@
+basic:
+  organization: Meta
+  workEmail:
+    - email: notification@email.meta.com
+      label: 通知
+  url: https://www.meta.com/
