@@ -1,7 +1,7 @@
 /** 因不支持 https 而豁免协议/path 校验的链接 */
 export interface LinkException {
-  organization: string
-  link: string
+  organization: string;
+  link: string;
 }
 
 export const linkExceptions: LinkException[] = [
@@ -28,5 +28,5 @@ export const linkExceptions: LinkException[] = [
   {
     "organization": "江南农商银行",
     "link": "http://www.jnbank.com.cn/"
-  }
-]
+  },
+];
