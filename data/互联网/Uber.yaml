@@ -1,0 +1,5 @@
+basic:
+  organization: Uber
+  workEmail:
+    - admin@uber.com
+  url: https://www.uber.com/
