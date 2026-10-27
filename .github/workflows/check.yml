@@ -15,6 +15,8 @@ jobs:
           bun-version-file: package.json
       - name: Install dependencies
         run: bun install --frozen-lockfile
+      - name: Check formatting
+        run: bun fmt --check
       - name: Typecheck
         run: bun run typecheck
       - name: Test
