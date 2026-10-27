@@ -1,0 +1,5 @@
+basic:
+  organization: Anthropic
+  workEmail:
+    - team@email.anthropic.com
+  url: https://www.anthropic.com/
