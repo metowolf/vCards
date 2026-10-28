@@ -8,6 +8,7 @@ basic:
     - number: +852 22333000
       label: 其他客户
   workEmail:
+    - donotreply@notification.hsbc.com.hk
     - HSBC_CNP@notification.hsbc.com.hk
     - HSBC@notification.hsbc.com.hk
     - HSBC.estatement.and.eadvice@notification.hsbc.com.hk

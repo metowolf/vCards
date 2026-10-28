@@ -2,4 +2,5 @@ basic:
   organization: X
   workEmail:
     - verify@x.com
+    - info@x.com
   url: https://x.com/
